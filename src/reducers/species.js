@@ -1,4 +1,4 @@
-export default (state=[], action) => {
+export default function species (state=[], action) {
     switch(action.type) {
         case 'ADD_SPECIES':
             console.log(state)
