@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import NewUserInput from './components/NewUserInput'
+import NewUserInput from './components/NewUserInput';
+import UserLogin from './components/UserLogin'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           Learn React
         </a>
         <NewUserInput/>
+        <UserLogin/>
       </header>
     </div>
   );

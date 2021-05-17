@@ -14,7 +14,6 @@ class NewUserInput extends Component {
     }
 
     handleOnChange = event => {
-        console.log(event.target.name)
         this.setState({
             [event.target.name]: event.target.value
         })
