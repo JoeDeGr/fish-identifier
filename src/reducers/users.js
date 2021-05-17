@@ -1,6 +1,6 @@
-export default (state=[], action) => {
+export default (state =[], action) => {
     switch(action.type) {
-        case 'ADD_SPECIES':
+        case 'ADD_USER':
             console.log(state)
             return state
         default:
