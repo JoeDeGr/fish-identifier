@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar'
@@ -16,7 +16,7 @@ export default function App () {
           <img src={logo} className="App-logo" alt="logo" />
           <Router>
             <main>
-             
+              <AuthButton/>
               <NavBar/>
               <Switch>
                 <Route path="/home">
@@ -38,7 +38,7 @@ export default function App () {
             </main>
           </Router>
         </header>
-        <AuthButton/>
+        
       </div>
     );
   };
@@ -95,10 +95,18 @@ function UserLogin () {
 }
 
 function AuthButton () {
-  const history = useHistory()
+  const history = useHistory();
 
-  return fakeAuth.isAuthenticated === true 
-      ? <p> <button onClick = {() => {fakeAuth.signout(() => history.push('/'))}}>Sign out</button> 
-      </p> : <p>I</p>
+  function handleOnClick() {
+    console.log(fakeAuth)
+    fakeAuth.signout(() => history.push('/'));
+    console.log(fakeAuth)
+  }
+
+  return fakeAuth.isAuthenticated === true ? <p>
+    <button onClick = {handleOnClick}>Sign out</button> </p> : <p> Please Log In </p>
   
+  
+    
+
 }
