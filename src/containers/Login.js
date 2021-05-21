@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NewUserInput from '../components/NewUserInput';
 import UserLogin from '../components/UserLogin';
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 
 class Login extends Component {
     render() {
@@ -13,8 +13,8 @@ class Login extends Component {
                         <nav>
                             <h1> Welcome! </h1>
                             <ul>
-                                <Link to="/newuser">Create A New Profile</Link><br></br>
-                                <Link to="/login">Login</Link>
+                                <NavLink to="/newuser">Create A New Profile</NavLink><br></br>
+                                <NavLink to="/login">Login</NavLink>
                             </ul>
                         </nav>
                     </div>
