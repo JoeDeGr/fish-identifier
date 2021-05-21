@@ -6,7 +6,7 @@ class User extends Component {
     render(){
         return(
             <div>
-                <p>I also exists.</p>
+                <p>I exists.</p>
             </div>
         )
     }

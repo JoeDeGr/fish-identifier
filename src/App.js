@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NavBar from './components/NavBar'
+import NavBar from './nav/NavBar'
 import Login from './containers/Login';
 import Users from './containers/Users';
 import Genus from "./containers/Genus";
@@ -19,7 +19,7 @@ export default function App () {
               <NavBar/>
               <Switch>
                 <Route path="/home">
-                  <Users/>
+                  <p>I'm Home.</p>
                 </Route>
                 <Route path="/Genus">
                     <Genus/>
@@ -29,6 +29,9 @@ export default function App () {
                 </Route>
                 <Route path="/species">
                   <Species/>
+                </Route>
+                <Route>
+                  <Users/>
                 </Route>
               </Switch>
             </main>

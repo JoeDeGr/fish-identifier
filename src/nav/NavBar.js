@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
  return (
-     <div classname = "navbar">
-         <nav classname = "navbar">
+     <div classname = "navBar">
+         <nav classname = "navBar">
                 <ul>
                   <NavLink to="/home">Home</NavLink><br></br>
                   <NavLink to="/login">Login</NavLink><br></br>

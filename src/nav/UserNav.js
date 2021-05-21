@@ -1,0 +1,16 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+const UserNav = () => {
+    return (
+        <div classname = "userNav">
+            <nav>
+                <NavLink to='/users/genus'>My Genus</NavLink><br></br>
+                <NavLink to='/users/species'>My Species</NavLink><br></br>
+                <NavLink to='/users/myphotos'>My Photos</NavLink><br></br>
+             </nav>
+        </div>
+    )
+}
+
+export default UserNav;
