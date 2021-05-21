@@ -7,7 +7,7 @@ import Users from './containers/Users';
 import Genus from "./containers/Genus";
 import Species from "./containers/Species";
 // import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, useLocation, useHistory } from 'react-router-dom';
 
 export default function App () {
     return (
@@ -16,6 +16,7 @@ export default function App () {
           <img src={logo} className="App-logo" alt="logo" />
           <Router>
             <main>
+             
               <NavBar/>
               <Switch>
                 <Route path="/home">
@@ -25,18 +26,79 @@ export default function App () {
                     <Genus/>
                 </Route>
                 <Route path="/login">
-                    <Login/> 
+                    <UserLogin/> 
                 </Route>
                 <Route path="/species">
                   <Species/>
                 </Route>
-                <Route>
+                <PrivateRoute>
                   <Users/>
-                </Route>
+                </PrivateRoute>
               </Switch>
             </main>
           </Router>
         </header>
+        <AuthButton/>
       </div>
     );
+  };
+
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100)
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
   }
+}
+
+function PrivateRoute ({ children, ...rest }){
+  return(
+    <Route {...rest} render={({ location }) => {
+      return fakeAuth.isAuthenticated === true 
+      ? children : 
+      <Redirect to={{ 
+        pathname: '/login',
+        state:{ from: location }
+        }}
+      />
+    }}/>
+  )
+}
+
+function UserLogin () {
+  const [
+    redirectToReferrer,
+    setRedirectToReferrer
+  ] = React.useState(false)
+
+  const { state } = useLocation()
+
+  const login = () => fakeAuth.authenticate(() => {
+    setRedirectToReferrer(true)
+  })
+
+  if (redirectToReferrer === true) {
+    return <Redirect to={ state?.from || '/' } />
+  }
+
+  return (
+    <div>
+      {/* <Login/> */}
+      <p> You must log in to view the page </p>
+      <button onClick={login}>log in</button>
+    </div>
+  )
+}
+
+function AuthButton () {
+  const history = useHistory()
+
+  return fakeAuth.isAuthenticated === true 
+      ? <p> <button onClick = {() => {fakeAuth.signout(() => history.push('/'))}}>Sign out</button> 
+      </p> : <p>I</p>
+  
+}
