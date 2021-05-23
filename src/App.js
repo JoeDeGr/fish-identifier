@@ -6,15 +6,16 @@ import NavBar from './nav/NavBar'
 import Users from './containers/UsersContainer';
 import Genus from "./containers/Genus";
 import Species from "./containers/Species";
+import { history } from './helpers/history'
 // import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch, Redirect, useLocation, useHistory } from 'react-router-dom';
+import { Router, Route, Switch, Redirect, useLocation } from 'react-router-dom';
 
 export default function App () {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Router>
+          <Router history = { history }>
             <main>
               
               <NavBar/>
@@ -33,12 +34,13 @@ export default function App () {
                 </Route>
                 <PrivateRoute>
                   <Users/>
+                  <Signout/>
                 </PrivateRoute>
               </Switch>
             </main>
           </Router>
         </header>
-        <Signout/>
+        
         
       </div>
     );
@@ -96,7 +98,8 @@ function UserLogin () {
 }
 
 function Signout () {
-  const history = useHistory();
+  
+  console.log(history)
 
   // function handleOnClick() {
   //   console.log(fakeAuth)
