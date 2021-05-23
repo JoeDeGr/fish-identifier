@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar'
 // import Login from './containers/Login';
-import Users from './containers/Users';
+import Users from './containers/UsersContainer';
 import Genus from "./containers/Genus";
 import Species from "./containers/Species";
 // import { connect } from 'react-redux'

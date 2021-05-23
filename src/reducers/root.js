@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import users from './users'
-import genus from './genus'
-import species from './species'
+import users from './usersReducer'
+import genus from './genusReducer'
+import species from './speciesReducer'
 
 export default combineReducers({
     users,
