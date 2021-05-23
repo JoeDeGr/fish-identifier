@@ -33,7 +33,7 @@ export default function App () {
                 </Route>
                 <PrivateRoute>
                   <Users/>
-                  <AuthButton/>
+                  <Signout/>
                 </PrivateRoute>
               </Switch>
             </main>
@@ -95,7 +95,7 @@ function UserLogin () {
   )
 }
 
-function AuthButton () {
+function Signout () {
   const history = useHistory();
 
   // function handleOnClick() {
@@ -107,7 +107,7 @@ function AuthButton () {
   if (fakeAuth.isAuthenticated === true) { 
       return <p> <button onClick = {() => {fakeAuth.signout(() => history.push('/'))}}>Sign out</button> </p>}
   else{ 
-    return <p> Please Log In </p>
+    return <p> Please Reload this screen. </p>
   }
   
 
