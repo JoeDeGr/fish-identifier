@@ -22,8 +22,8 @@ function login (userData) {
                     history.push('/');
                 },
                 error => {
-                    dispatch({type: 'LOGIN_FAILURE', error})
-                    dispatch(alertActions.error(error))
+                    dispatch({type: 'LOGIN_FAILURE', error});
+                    dispatch(alertActions.error(error));
                 }
             )
     }
@@ -40,10 +40,47 @@ function getAll() {
 
         userService.getAll()
             .then(
-                users => dispatch({ type: 'GETALL_SUCCESS', users}),
+                user => dispatch({ type: 'GETALL_SUCCESS', user}),
                 error => {
-                    dispatch({ type: 'GETALL_FAILURE', error})
-                    dispatch( alertActions.error(error))
+                    dispatch({ type: 'GETALL_FAILURE', error});
+                    dispatch( alertActions.error(error));
+                }
+            )
+    }
+}
+
+function update() {
+    return dispatch => {
+        dispatch({type: 'UPDATE_USER_REQUEST'});
+
+        userService.update()
+            .then(
+                user => {
+                    dispatch({ type: 'UPDATE_USER_SUCCESS', user});
+                    history.push('/');
+                },
+                error => {
+                    dispatch({ type: 'UPDATE_USER_FAILURE', error});
+                    dispatch( alertActions.error(error));
+                }
+            )
+    }
+}
+
+function createUser (userData) {
+    let username = userdata.username
+    return dispatch => {
+        dispatch({type: 'CREATE_USER_REQUEST', username});
+
+        userService.createUser(userData)
+            .then(
+                user => {
+                    dispatch({type: 'CREATE_USER_SUCCESS', user});
+                    history.push('/');
+                },
+                error => {
+                    dispatch({type: 'CREATE_USER_FAILURE', error});
+                    dispatch(alertActions.error(error));
                 }
             )
     }

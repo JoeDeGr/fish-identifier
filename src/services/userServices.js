@@ -24,6 +24,18 @@ function createUser(userData) {
         .then(storeUser(user))
 }
 
+function update(userData) {
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({userData})
+    };
+
+    return fetch('${apiURL}/users', options)
+        .then(handleResponse)
+        .then(storeUser(user))
+}
+
 function login (userData) {
 
     const options = {
