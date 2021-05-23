@@ -13,19 +13,19 @@ export const userActions = {
 function login (userData) {
     let username = userdata.username
     return dispatch => {
-        dispatch({type: 'LOGIN_REQUEST', user});
+        dispatch({type: 'LOGIN_REQUEST', username});
 
         userService.login(userData)
-        .then(
-            user => {
-                dispatch({type: 'LOGIN_SUCCESS', user});
-                history.push('/');
-            },
-            error => {
-                dispatch({type: 'LOGIN_FAILURE', error})
-                dispatch(alertActions.error(error))
-            }
-        )
+            .then(
+                user => {
+                    dispatch({type: 'LOGIN_SUCCESS', user});
+                    history.push('/');
+                },
+                error => {
+                    dispatch({type: 'LOGIN_FAILURE', error})
+                    dispatch(alertActions.error(error))
+                }
+            )
     }
 }
 
