@@ -4,18 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/index';
-// import {BrowserRouter} from 'react-router-dom';
+import thunkMiddleware from 'redux-thunk';
 
-let store = createStore(rootReducer)
+
+let store = createStore(rootReducer, applymiddleware(thunkMiddleware));
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <BrowserRouter> */}
         <App />
-      {/* </BrowserRouter> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

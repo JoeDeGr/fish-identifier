@@ -33,12 +33,12 @@ export default function App () {
                 </Route>
                 <PrivateRoute>
                   <Users/>
-                  <Signout/>
                 </PrivateRoute>
               </Switch>
             </main>
           </Router>
         </header>
+        <Signout/>
         
       </div>
     );
