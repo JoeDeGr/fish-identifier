@@ -2,7 +2,7 @@ import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar'
-import Login from './containers/Login';
+// import Login from './containers/Login';
 import Users from './containers/Users';
 import Genus from "./containers/Genus";
 import Species from "./containers/Species";
@@ -16,7 +16,7 @@ export default function App () {
           <img src={logo} className="App-logo" alt="logo" />
           <Router>
             <main>
-              <AuthButton/>
+              
               <NavBar/>
               <Switch>
                 <Route path="/home">
@@ -33,6 +33,7 @@ export default function App () {
                 </Route>
                 <PrivateRoute>
                   <Users/>
+                  <AuthButton/>
                 </PrivateRoute>
               </Switch>
             </main>
@@ -97,16 +98,17 @@ function UserLogin () {
 function AuthButton () {
   const history = useHistory();
 
-  function handleOnClick() {
-    console.log(fakeAuth)
-    fakeAuth.signout(() => history.push('/'));
-    console.log(fakeAuth)
-  }
+  // function handleOnClick() {
+  //   console.log(fakeAuth)
+  //   fakeAuth.signout(() => history.push('/'));
+  //   console.log(fakeAuth)
+  // }
 
-  return fakeAuth.isAuthenticated === true ? <p>
-    <button onClick = {handleOnClick}>Sign out</button> </p> : <p> Please Log In </p>
+  if (fakeAuth.isAuthenticated === true) { 
+      return <p> <button onClick = {() => {fakeAuth.signout(() => history.push('/'))}}>Sign out</button> </p>}
+  else{ 
+    return <p> Please Log In </p>
+  }
   
-  
-    
 
 }
