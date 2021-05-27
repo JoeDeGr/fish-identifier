@@ -1,12 +1,12 @@
 import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import NavBar from './nav/NavBar'
-// import LoginContainer from './containers/Login';
+import NavBar from './nav/NavBar';
+import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
 import GenusContainer from "./containers/GenusContainer";
 import SpeciesContainer from "./containers/SpeciesContainer";
-import { history } from './helpers/history'
+import { history } from './helpers/history';
 // import { connect } from 'react-redux'
 import { Router, Route, Switch, Redirect, useLocation } from 'react-router-dom';
 
@@ -17,7 +17,6 @@ export default function App () {
           <img src={logo} className="App-logo" alt="logo" />
           <Router history = { history }>
             <main>
-              
               <NavBar/>
               <Switch>
                 <Route path="/home">
@@ -27,7 +26,7 @@ export default function App () {
                     <GenusContainer/>
                 </Route>
                 <Route path="/login">
-                    <UserLogin/> 
+                    <LoginContainer/> 
                 </Route>
                 <Route path="/species">
                   <SpeciesContainer/>
