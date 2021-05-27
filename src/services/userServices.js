@@ -12,11 +12,11 @@ export const userService = {
     
 };
 
-function createUser(userData) {
+function createUser(user) {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({userData})
+        body: JSON.stringify({user})
     };
 
     return fetch('${apiURL}/users', options)
@@ -24,11 +24,11 @@ function createUser(userData) {
         .then(storeUser(user))
 }
 
-function update(userData) {
+function update(user) {
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({userData})
+        body: JSON.stringify({user})
     };
 
     return fetch('${apiURL}/users', options)
@@ -59,7 +59,7 @@ function getAll () {
         headers: authHeader()
     }
 
-    return fetch('$(apiURL}/users', options).then(handleResponse);
+    return fetch('$(apiURL}/auto_login', options).then(handleResponse);
 }
 
 function handleResponse(response) {
