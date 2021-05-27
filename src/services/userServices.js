@@ -44,7 +44,7 @@ function login (userData) {
         body: JSON.stringify({userData})
     };
 
-    return fetch('${apiURL}/users/authenticate', options)
+    return fetch('${apiURL}/login', options)
         .then(handleResponse)
         .then(storeUser(user));
 }
@@ -72,16 +72,19 @@ function handleResponse(response) {
                 //logout if response 401
                 logout();
             }
-
             return Promise.reject(error);
         }
 
         return data;
     })
-
 }
 
 function storeUser(user) {
     localStorage.setItem('user', JSON.stringify(user));
     return user;
 }
+
+// function storeToken() {
+//     localStorage.setItem('token', JSON.stringify(user.jwt));
+//     return token;
+// }

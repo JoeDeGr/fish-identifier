@@ -1,7 +1,7 @@
-let user = JSON.parse(localstorage.getItem('user'));
+let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? {loggedIn: true, user } : {};
 
-export default function users (state =[], action) {
+export default function users (state =[initialState], action) {
     switch(action.type) {
         case 'CREATE_USER_REQUEST':
             console.log(state)
