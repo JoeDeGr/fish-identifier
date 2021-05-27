@@ -5,7 +5,7 @@ import UserLogin from '../components/UserLogin';
 // import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-class Login extends Component {
+class LoginContainer extends Component {
     render() {
         return(
             <div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Genus extends Component{
+export default class GenusContainer extends Component{
     render() {
         return (
             <div>

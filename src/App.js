@@ -2,10 +2,10 @@ import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar'
-// import Login from './containers/Login';
+// import LoginContainer from './containers/Login';
 import Users from './containers/UsersContainer';
-import Genus from "./containers/Genus";
-import Species from "./containers/Species";
+import GenusContainer from "./containers/GenusContainer";
+import SpeciesContainer from "./containers/SpeciesContainer";
 import { history } from './helpers/history'
 // import { connect } from 'react-redux'
 import { Router, Route, Switch, Redirect, useLocation } from 'react-router-dom';
@@ -24,13 +24,13 @@ export default function App () {
                   <p>I'm Home.</p>
                 </Route>
                 <Route path="/Genus">
-                    <Genus/>
+                    <GenusContainer/>
                 </Route>
                 <Route path="/login">
                     <UserLogin/> 
                 </Route>
                 <Route path="/species">
-                  <Species/>
+                  <SpeciesContainer/>
                 </Route>
                 <PrivateRoute>
                   <Users/>
@@ -90,7 +90,7 @@ function UserLogin () {
 
   return (
     <div>
-      {/* <Login/> */}
+      {/* <LoginContainer/> */}
       <p> You must log in to view the page </p>
       <button onClick={login}>log in</button>
     </div>
