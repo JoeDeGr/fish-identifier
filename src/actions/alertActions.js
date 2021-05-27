@@ -13,5 +13,5 @@ function error(message) {
 }
 
 function clear(message) {
-    return { type: 'ALERT_ERROR', message }
+    return { type: 'ALERT_CLEAR', message }
 }
