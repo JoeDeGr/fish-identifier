@@ -11,7 +11,7 @@ export const userActions = {
 };
 
 function login (userData) {
-    let username = userdata.username
+    let username = userData.username
     return dispatch => {
         dispatch({type: 'LOGIN_REQUEST', username});
 
@@ -68,7 +68,7 @@ function update() {
 }
 
 function createUser (userData) {
-    let username = userdata.username
+    let username = userData.username
     return dispatch => {
         dispatch({type: 'CREATE_USER_REQUEST', username});
 

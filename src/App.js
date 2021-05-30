@@ -2,13 +2,13 @@ import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar';
+import PrivateRoute from './components/PrivateRoute'
 import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
 import GenusContainer from "./containers/GenusContainer";
 import SpeciesContainer from "./containers/SpeciesContainer";
 import Home from "./containers/Home"
 import { history } from './helpers/history';
-// import { connect } from 'react-redux'
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 export default function App () {
@@ -34,7 +34,7 @@ export default function App () {
                 </Route>
                 <PrivateRoute>
                   <Users/>
-                  <Signout/>
+                  {/* <Signout/> */}
                 </PrivateRoute>
               </Switch>
             </main>
@@ -46,31 +46,31 @@ export default function App () {
     );
   };
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
-}
+// const fakeAuth = {
+//   isAuthenticated: false,
+//   authenticate(cb) {
+//     this.isAuthenticated = true
+//     setTimeout(cb, 100)
+//   },
+//   signout(cb) {
+//     this.isAuthenticated = false
+//     setTimeout(cb, 100)
+//   }
+// }
 
-function PrivateRoute ({ children, ...rest }){
-  return(
-    <Route {...rest} render={({ location }) => {
-      return fakeAuth.isAuthenticated === true 
-      ? children : 
-      <Redirect to={{ 
-        pathname: '/login',
-        state:{ from: location }
-        }}
-      />
-    }}/>
-  )
-}
+// function PrivateRoute ({ children, ...rest }){
+//   return(
+//     <Route {...rest} render={({ location }) => {
+//       return fakeAuth.isAuthenticated === true 
+//       ? children : 
+//       <Redirect to={{ 
+//         pathname: '/login',
+//         state:{ from: location }
+//         }}
+//       />
+//     }}/>
+//   )
+// }
 
 // function UserLogin () {
 //   const [
@@ -97,21 +97,19 @@ function PrivateRoute ({ children, ...rest }){
 //   )
 // }
 
-function Signout () {
+// function Signout () {
   
-  console.log(history)
+//   console.log(history)
 
-  // function handleOnClick() {
-  //   console.log(fakeAuth)
-  //   fakeAuth.signout(() => history.push('/'));
-  //   console.log(fakeAuth)
-  // }
+//   // function handleOnClick() {
+//   //   console.log(fakeAuth)
+//   //   fakeAuth.signout(() => history.push('/'));
+//   //   console.log(fakeAuth)
+//   // }
 
-  if (fakeAuth.isAuthenticated === true) { 
-      return <p> <button onClick = {() => {fakeAuth.signout(() => history.push('/'))}}>Sign out</button> </p>}
-  else{ 
-    return <p> Please Reload this screen. </p>
-  }
-  
-
-}
+//   if (fakeAuth.isAuthenticated === true) { 
+//       return <p> <button onClick = {() => {fakeAuth.signout(() => history.push('/'))}}>Sign out</button> </p>}
+//   else{ 
+//     return <p> Please Reload this screen. </p>
+//   }
+// }

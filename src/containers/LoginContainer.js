@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import LoginNav from '../nav/LoginNav'
-import NewUserInput from '../components/NewUserInput';
-import UserLogin from '../components/UserLogin';
-// import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NewUserInput from '../components/User/NewUserInput';
+import UserLogin from '../components/User/UserLogin';
+// import userActions from '../actions/userActions'
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class LoginContainer extends Component {
     render() {
@@ -25,4 +26,4 @@ class LoginContainer extends Component {
     }
 }
 
-export default LoginContainer
+export default connect()(LoginContainer)
