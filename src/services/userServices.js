@@ -1,5 +1,15 @@
 // import config from 'config';
-import authHeader from '../helpers'
+// import authHeader from '../helpers/authHeader'
+
+function authHeader() {
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    if (user && user.token) {
+        return {'Authorization' : 'Bearer ' + user.token };
+    } else {
+        return {};
+    }
+}
 
 const apiURL = 'localhost:3000' 
 
@@ -19,7 +29,7 @@ function createUser(user) {
         body: JSON.stringify({user})
     };
 
-    return fetch('${apiURL}/users', options)
+    return fetch(apiURL + '/users', options)
         .then(handleResponse)
         .then(storeUser(user))
 }
@@ -31,7 +41,7 @@ function update(user) {
         body: JSON.stringify({user})
     };
 
-    return fetch('${apiURL}/users', options)
+    return fetch(apiURL + '/users', options)
         .then(handleResponse)
         .then(storeUser(user))
 }
@@ -44,9 +54,9 @@ function login (userData) {
         body: JSON.stringify({userData})
     };
 
-    return fetch('${apiURL}/login', options)
+    return fetch(apiURL + '/login', options)
         .then(handleResponse)
-        .then(storeUser(user));
+        .then(storeUser(userData));
 }
 
 function logout() {

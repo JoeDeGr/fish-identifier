@@ -1,6 +1,6 @@
-import { userService } from '../services';
+import { userService } from '../services/userServices';
 import { alertActions } from './alertActions'
-import { history } from '../helpers'
+import { history } from '../helpers/history'
 
 export const userActions = {
     createUser,

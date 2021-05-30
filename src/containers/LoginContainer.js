@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LoginNav from '../nav/LoginNav'
 import NewUserInput from '../components/User/NewUserInput';
 import UserLogin from '../components/User/UserLogin';
-// import userActions from '../actions/userActions'
+import userActions from '../actions/userActions'
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
