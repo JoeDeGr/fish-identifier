@@ -6,9 +6,10 @@ import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
 import GenusContainer from "./containers/GenusContainer";
 import SpeciesContainer from "./containers/SpeciesContainer";
+import Home from "./containers/Home"
 import { history } from './helpers/history';
 // import { connect } from 'react-redux'
-import { Router, Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 export default function App () {
     return (
@@ -20,7 +21,7 @@ export default function App () {
               <NavBar/>
               <Switch>
                 <Route path="/home">
-                  <p>I'm Home.</p>
+                  <Home/>
                 </Route>
                 <Route path="/Genus">
                     <GenusContainer/>
@@ -71,30 +72,30 @@ function PrivateRoute ({ children, ...rest }){
   )
 }
 
-function UserLogin () {
-  const [
-    redirectToReferrer,
-    setRedirectToReferrer
-  ] = React.useState(false)
+// function UserLogin () {
+//   const [
+//     redirectToReferrer,
+//     setRedirectToReferrer
+//   ] = React.useState(false)
 
-  const { state } = useLocation()
+//   const { state } = useLocation()
 
-  const login = () => fakeAuth.authenticate(() => {
-    setRedirectToReferrer(true)
-  })
+//   const login = () => fakeAuth.authenticate(() => {
+//     setRedirectToReferrer(true)
+//   })
 
-  if (redirectToReferrer === true) {
-    return <Redirect to={ state?.from || '/' } />
-  }
+//   if (redirectToReferrer === true) {
+//     return <Redirect to={ state?.from || '/' } />
+//   }
 
-  return (
-    <div>
-      {/* <LoginContainer/> */}
-      <p> You must log in to view the page </p>
-      <button onClick={login}>log in</button>
-    </div>
-  )
-}
+//   return (
+//     <div>
+//       {/* <LoginContainer/> */}
+//       <p> You must log in to view the page </p>
+//       <button onClick={login}>log in</button>
+//     </div>
+//   )
+// }
 
 function Signout () {
   
