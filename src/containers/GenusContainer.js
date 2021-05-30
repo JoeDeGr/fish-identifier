@@ -19,7 +19,7 @@ class GenusContainer extends Component{
 const mapStateToProps = state => ({genuses: state.genuses })
 
 const mapDispatchToProps = dispatch => ({
-    addGenusToUser: id => dispatch({ type: 'ADD_GENUS_TO_USER', id})
+    addGenusToUser: genus_id => dispatch({ type: 'ADD_GENUS_TO_USER', genus_id})
 })
 
 
