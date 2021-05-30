@@ -6,7 +6,7 @@ class Genus extends React.Component {
         this.props.addGenusToUser(this.props.genus.id)
     }
 
-    render () {
+    render() {
         const { genus } = this.props
 
         return(

@@ -2,7 +2,6 @@ import React from 'react';
 import Genus from './Genus';
 
 class GenusList extends React.Component {
-    debugger
 
     render() {
         const { genuses, addGenusToUser } = this.props;
@@ -19,7 +18,6 @@ class GenusList extends React.Component {
             <ul>
                 {genusList}
             </ul>
-
         )
     }
 }

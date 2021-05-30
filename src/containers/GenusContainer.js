@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import GenusList from '../components/Genus/GenusList';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 class GenusContainer extends Component{
-    debugger
     render() {
         return (
             <div>
