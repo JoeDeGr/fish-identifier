@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+// import { userService } from '../services/userServices';
 
 class NewUserInput extends Component {
     constructor () {
@@ -20,13 +21,27 @@ class NewUserInput extends Component {
     }
 
     handleOnSubmit = event => {
+        debugger
         event.preventDefault()
         console.log(this.state)
-        // if (!this.state.username || !this.state.email) return
-        // if (!(this.state.password === this.state.passwordConfirmation) || (this.state.password === '')) return
-
-        // this.props.handleLogin(this.state)
+        let user = this.state
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({user})
+        };
+        debugger
+    
+        fetch('http://localhost:3000/users', options)
+            .then(response => response.json())
+            .then(user => {
+                debugger
+                this.props.createUser(user)
+                this.props.setToken(user.token)
+                console.log(user)
+            } )
     }
+
 
     render() {
         return(

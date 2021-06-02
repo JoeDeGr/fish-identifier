@@ -6,6 +6,8 @@ import UserNav from '../nav/UserNav';
 import { connect } from 'react-redux';
 import { history } from '../helpers/history';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
+// import { userActions } from './actions/userActions'
+
 class UsersContainer extends Component {
     render() {
         return(
@@ -40,4 +42,9 @@ class UsersContainer extends Component {
 
 const mapStateToProps = state => ({ user: state.user })
 
-export default connect(mapStateToProps)(UsersContainer)
+// const mapDispatchToProps = dispatch => ({
+//     login: userActions.login,
+
+// })
+
+export default connect( mapStateToProps )(UsersContainer)

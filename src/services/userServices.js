@@ -1,15 +1,5 @@
 // import config from 'config';
-// import authHeader from '../helpers/authHeader'
-
-function authHeader() {
-    let user = JSON.parse(localStorage.getItem('user'));
-
-    if (user && user.token) {
-        return {'Authorization' : 'Bearer ' + user.token };
-    } else {
-        return {};
-    }
-}
+import { authHeader } from '../helpers/auth-header'
 
 const apiURL = 'localhost:3000' 
 
@@ -19,10 +9,22 @@ export const userService = {
     update,
     logout,
     getAll,
-    
+    storeToken,
+    storeUser,    
 };
 
+// function authHeader() {
+//     let user = JSON.parse(localStorage.getItem('user'));
+
+//     if (user && user.token) {
+//         return {'Authorization' : 'Bearer ' + user.token };
+//     } else {
+//         return {};
+//     }
+// }
+
 function createUser(user) {
+    debugger
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,7 +32,7 @@ function createUser(user) {
     };
 
     return fetch(apiURL + '/users', options)
-        .then(handleResponse)
+        .then(handleResponse())
         .then(storeUser(user))
 }
 
@@ -42,7 +44,7 @@ function update(user) {
     };
 
     return fetch(apiURL + '/users', options)
-        .then(handleResponse)
+        .then(handleResponse())
         .then(storeUser(user))
 }
 
@@ -55,7 +57,7 @@ function login (userData) {
     };
 
     return fetch(apiURL + '/login', options)
-        .then(handleResponse)
+        .then(handleResponse())
         .then(storeUser(userData));
 }
 
@@ -69,7 +71,7 @@ function getAll () {
         headers: authHeader()
     }
 
-    return fetch('$(apiURL}/auto_login', options).then(handleResponse);
+    return fetch('$(apiURL}/auto_login', options).then(handleResponse());
 }
 
 function handleResponse(response) {
@@ -94,7 +96,7 @@ function storeUser(user) {
     return user;
 }
 
-// function storeToken() {
-//     localStorage.setItem('token', JSON.stringify(user.jwt));
-//     return token;
-// }
+function storeToken(user) {
+    let token = localStorage.setItem('token', JSON.stringify(user.jwt));
+    return token;
+}

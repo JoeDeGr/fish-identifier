@@ -10,12 +10,13 @@ export const userActions = {
     getAll,
 };
 
-function login (userData) {
-    let username = userData.username
+function login (user) {
+    debugger
+    let username = user.username
     return dispatch => {
         dispatch({type: 'LOGIN_REQUEST', username});
 
-        userService.login(userData)
+        userService.login(user)
             .then(
                 user => {
                     dispatch({type: 'LOGIN_SUCCESS', user});
@@ -67,12 +68,12 @@ function update() {
     }
 }
 
-function createUser (userData) {
-    let username = userData.username
+function createUser (user) {
+    let username = user.username
+    debugger
     return dispatch => {
         dispatch({type: 'CREATE_USER_REQUEST', username});
-
-        userService.createUser(userData)
+        userService.createUser(user)
             .then(
                 user => {
                     dispatch({type: 'CREATE_USER_SUCCESS', user});

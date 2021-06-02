@@ -19,6 +19,7 @@ class UserLogin extends Component {
     handleOnSubmit = event => {
         event.preventDefault()
         console.log(this.state)
+        this.props.createUser(this.state)
     }
 
     render(){
@@ -48,7 +49,6 @@ class UserLogin extends Component {
                     />
                     <input type = "submit" />
                 </form>
-
             </div>
         )
     }
