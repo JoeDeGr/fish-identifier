@@ -11,12 +11,9 @@ export const userActions = {
 };
 
 function login (user) {
-    debugger
     let username = user.username
     return dispatch => {
-        debugger
         dispatch({type: 'LOGIN_REQUEST', username});
-
         userService.login(user)
             .then(
                 user => {
@@ -32,7 +29,9 @@ function login (user) {
 }
 
 function logout() {
+    debugger
     userService.logout();
+    history.push('/')
     return {type: 'LOGOUT'}
 }
 
@@ -74,7 +73,7 @@ function createUser (user) {
     debugger
     return dispatch => {
         dispatch({type: 'CREATE_USER_REQUEST', username});
-        return userService.createUser(user)
+        userService.createUser(user)
             .then(
                 user => {
                     dispatch({type: 'CREATE_USER_SUCCESS', user});

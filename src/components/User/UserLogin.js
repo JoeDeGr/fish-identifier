@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
 class UserLogin extends Component {
     constructor () {
@@ -19,13 +20,14 @@ class UserLogin extends Component {
         event.preventDefault()
         console.log(this.state)
         const user = this.state
-        const options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({user})
-        };
+        this.props.login(user)
+        // const options = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({user})
+        // };
 
-        this.props.get(options, '/login')
+        // this.props.get(options, '/login')
 
     }
 
@@ -61,4 +63,4 @@ class UserLogin extends Component {
     }
 }
 
-export default UserLogin
+export default connect()(UserLogin)

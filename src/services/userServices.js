@@ -1,7 +1,6 @@
-// import config from 'config';
 import { authHeader } from '../helpers/auth-header'
 
-const apiURL = 'localhost:3000' 
+const apiURL = 'http://localhost:3000' 
 
 export const userService = {
     createUser,
@@ -10,18 +9,8 @@ export const userService = {
     logout,
     getAll,
     storeToken,
-    storeUser,    
+    storeUser   
 };
-
-// function authHeader() {
-//     let user = JSON.parse(localStorage.getItem('user'));
-
-//     if (user && user.token) {
-//         return {'Authorization' : 'Bearer ' + user.token };
-//     } else {
-//         return {};
-//     }
-// }
 
 function createUser(user) {
     debugger
@@ -48,21 +37,22 @@ function update(user) {
         .then(storeUser(user))
 }
 
-function login (userData) {
+function login (user) {
 
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({userData})
+        body: JSON.stringify({user})
     };
 
     return fetch(apiURL + '/login', options)
-        .then(handleResponse())
-        .then(storeUser(userData));
+        .then(resp => handleResponse(resp))
+        .then(data => storeUser(data));
 }
 
 function logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('token')
 }
 
 function getAll () {
@@ -75,12 +65,15 @@ function getAll () {
 }
 
 function handleResponse(response) {
+    
     return response.text().then(text => {
+        debugger
         const data = text && JSON.parse(text);
         if (!response.ok) {
-            const error = (data && data.medage) || response.statusText;
-
+            const error = (data && data.message) || response.statusText;
+            console.log(error)
             if (response.status === 401) {
+                
                 //logout if response 401
                 logout();
             }
@@ -91,9 +84,11 @@ function handleResponse(response) {
     })
 }
 
-function storeUser(user) {
-    localStorage.setItem('user', JSON.stringify(user));
-    return user;
+function storeUser(data) {
+    localStorage.setItem('user', JSON.stringify(data.user));
+    storeToken(data.user)
+    console.log(data.user)
+    return data.user;
 }
 
 function storeToken(user) {

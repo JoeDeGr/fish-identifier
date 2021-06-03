@@ -4,7 +4,7 @@ import NewUserInput from '../components/User/NewUserInput';
 import UserLogin from '../components/User/UserLogin';
 import {userActions} from '../actions/userActions';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class LoginContainer extends Component {
 
@@ -34,7 +34,7 @@ class LoginContainer extends Component {
                             <NewUserInput createUser={ createUser } setToken = {setToken} get={get}/>
                         </Route>
                         <Route path="/login">
-                            <UserLogin createUser={ createUser } setToken = {setToken} get={get}/>
+                            <UserLogin login = { this.props.login } createUser={ createUser } setToken = {setToken} get={get}/>
                         </Route>
                     </Switch>
                 </Router> 
@@ -42,9 +42,11 @@ class LoginContainer extends Component {
         );
     }
 }
+
+
 const mapDispatchToProps = dispatch => {
     return {
-        login: user => dispatch(userActions.login(user)),
+        login: user => dispatch( userActions.login(user) ),
     }
 } 
 

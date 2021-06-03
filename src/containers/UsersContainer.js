@@ -6,15 +6,21 @@ import UserNav from '../nav/UserNav';
 import { connect } from 'react-redux';
 import { history } from '../helpers/history';
 import { Router, Route, Switch } from 'react-router-dom';
-// import { userActions } from './actions/userActions'
+import { userActions } from '../actions/userActions'
 
 class UsersContainer extends Component {
+
+    handleOnClick = () => {
+        debugger
+        this.props.logout()
+    } 
     render() {
         return(
             <div>
+                <button onClick={(e) => {this.handleOnClick(e)}}>Log The f*$% Out!</button>
                 <h1>You are here. We are now.</h1>
                 <Router history = { history }>
-                    <UserNav/>
+                    <UserNav />
                     <Switch>
                         <Route path='/user/genus'>
                             {/* <UserGenus userGenus={this.props.user.genuses}/> */}
@@ -42,5 +48,11 @@ class UsersContainer extends Component {
 
 const mapStateToProps = state => ({ user: state.user })
 
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(userActions.logout())
+    }
+}
 
-export default connect( mapStateToProps)(UsersContainer)
+
+export default connect( mapStateToProps, mapDispatchToProps)(UsersContainer)
