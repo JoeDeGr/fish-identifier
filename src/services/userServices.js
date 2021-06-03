@@ -62,7 +62,9 @@ function getAll () {
         headers: authHeader()
     }
 
-    return fetch('$(apiURL}/auto_login', options).then(handleResponse());
+    return fetch('$(apiURL}/auto_login', options)
+        .then(response => handleResponse(response))
+        .then(data => console.log(data));
 }
 
 function handleResponse(response) {

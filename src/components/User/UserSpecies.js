@@ -1,25 +1,27 @@
 import React from 'react';
 import Species from '../Species/Species'
+import { connect } from 'react-redux'
 
-class UserSpecies extends React.Component{
+class UserSpecies extends React.Component {
 
     render() {
-        debugger 
+ 
         const { userSpecies } = this.props;
         const speciesList = userSpecies.map( species => {
-            debugger
             return(
+            <li id={species.id}>
                 <Species
                     key = {species.id}
                     species = {species}
                     // addSpeciesToUser = {addSpeciesToUser}
+                    // removeSpecies = {removeSpecies}
                 />
+            </li>
             )
         });
         return(
             <div> 
                 <ul>
-                    <p>Comming Soon!</p>
                     {speciesList}
                 </ul>
             </div>
@@ -28,4 +30,4 @@ class UserSpecies extends React.Component{
     }
 }
 
-export default  UserSpecies
+export default  connect ()(UserSpecies)

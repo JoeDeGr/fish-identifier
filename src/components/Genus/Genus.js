@@ -14,7 +14,9 @@ class Genus extends React.Component {
                 <li>
                     <h3>{genus.name}</h3>
                     <ul>
-                        <li>Genus Database id: {genus.id}</li><br></br>
+                        <li>Genus Database id: {genus.id}</li>
+                        <li></li>
+                        <br></br>
                         <button onClick={(e) => this.handleOnClick(e)}>Add Me To Your List!</button>
                     </ul>
                 </li>

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar';
-import  PrivateRoute  from './components/PrivateRoute'
+import UserNav from './nav/UserNav'
+import PrivateRoute  from './components/PrivateRoute'
 import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
 import GenusContainer from "./containers/GenusContainer";
@@ -10,26 +11,35 @@ import SpeciesContainer from "./containers/SpeciesContainer";
 import Home from "./containers/Home"
 import { history } from './helpers/history';
 import { Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userActions } from './actions/userActions'
 
-export default function App () {
+class App extends React.Component {
 
-
-
-  useEffect(() => {
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   if (token){
+  //     fetch('http://localhost:3000/auto_login', {
+  //       headers: {
+  //         Authorization: 'Bearer ' + token
+  //       }
+  //     })
+  //     .then(resp => resp.json)
+  //     .then(data => {
+  //       console.log(data)
+  //     })
+  //   }
+  // })
+  
+  
+  componentDidMount(){
+    debugger
     const token = localStorage.getItem('token')
     if (token){
-      fetch('http://localhost:3000/auto_login', {
-        headers: {
-          Authorization: 'Bearer ' + token
-        }
-      })
-      .then(resp => resp.json)
-      .then(data => {
-        console.log(data)
-      })
+      this.props.getAll()
     }
-  })
-
+    }
+  render (){
     return (
       <div className="App">
         <header className="App-header">
@@ -45,7 +55,7 @@ export default function App () {
                     <GenusContainer/>
                 </Route>
                 <Route path="/login">
-                    <LoginContainer history = { history } /> 
+                    <LoginContainer history = { history } login = {this.props.login} createUser = {this.props.createUser} /> 
                 </Route>
                 <Route path="/species">
                   <SpeciesContainer/>
@@ -59,4 +69,14 @@ export default function App () {
         </header>
       </div>
     );
-  };
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      login: user => dispatch( userActions.login(user) ),
+      createUser: user => dispatch(userActions.createUser(user)),
+      getAll: () => dispatch(userActions.getAll()),
+  }
+} 
+export default connect(null, mapDispatchToProps)(App)

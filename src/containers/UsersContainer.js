@@ -5,7 +5,7 @@ import UserSpecies from '../components/User/UserSpecies';
 import UserNav from '../nav/UserNav';
 import { connect } from 'react-redux';
 import { history } from '../helpers/history';
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { userActions } from '../actions/userActions'
 
 class UsersContainer extends Component {
@@ -13,7 +13,7 @@ class UsersContainer extends Component {
     constructor(props){
         super(props);
         this.state ={
-            user: localStorage.getItem('user')
+            user: JSON.parse(localStorage.getItem('user'))
         }
     }
 
@@ -29,10 +29,10 @@ class UsersContainer extends Component {
                     <UserNav />
                     <Switch>
                         <Route path='/users/genus'>
-                            <UserGenus />
+                            <UserGenus userGenus={this.state.user.user_genus}/>
                         </Route>
                         <Route path ='/users_species'>
-                            <UserSpecies />
+                            <UserSpecies userSpecies={this.state.user.user_species}/>
                         </Route>
                         <Route path='users/myphotos'>
                             {/* <UserPhotos/> */}
@@ -61,4 +61,4 @@ const mapDispatchToProps = dispatch => {
         logout: () => dispatch(userActions.logout())
     }
 }
-export default connect( mapDispatchToProps)(UsersContainer)
+export default connect(null, mapDispatchToProps)(UsersContainer)

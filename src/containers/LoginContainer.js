@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import LoginNav from '../nav/LoginNav'
 import NewUserInput from '../components/User/NewUserInput';
 import UserLogin from '../components/User/UserLogin';
-import { userActions } from '../actions/userActions';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -28,11 +27,11 @@ class LoginContainer extends Component {
 }
 
 
-const mapDispatchToProps = dispatch => {
-    return {
-        login: user => dispatch( userActions.login(user) ),
-        createUser: user => dispatch(userActions.createUser(user)),
-    }
-} 
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         login: user => dispatch( userActions.login(user) ),
+//         createUser: user => dispatch(userActions.createUser(user)),
+//     }
+// } 
 
-export default connect( null,mapDispatchToProps )(LoginContainer)
+export default connect()(LoginContainer)

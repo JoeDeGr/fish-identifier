@@ -11,13 +11,16 @@ class Species extends React.Component {
 
         return(
             <div>
-                <li>
-                    <h3>{species.name}</h3>
-                    <ul>
-                        <li>Species Database id: {species.id}</li><br></br>
-                        <button onClick={(e) => this.handleOnClick(e)}>Add Me To Your List!</button>
-                    </ul>
-                </li>
+                <ul>
+                    <lh>{species.common_name}</lh>
+                    <li>Species Database id: {species.id}</li><br></br>
+                    <li>Scientific Name: {species.scientific_name}</li>
+                    <li>Habitat: {species.habitat}</li>
+                    <li>Distribution: {species.distribution}</li>
+                    <li>Game Qualities: {species.game_qualities}</li>
+                    <li>Description: {species.description}</li>
+                    <button onClick={(e) => this.handleOnClick(e)}>Add Me To Your List!</button>
+                </ul>
             </div>
         )
     }
