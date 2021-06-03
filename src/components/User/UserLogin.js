@@ -21,14 +21,6 @@ class UserLogin extends Component {
         console.log(this.state)
         const user = this.state
         this.props.login(user)
-        // const options = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({user})
-        // };
-
-        // this.props.get(options, '/login')
-
     }
 
     render(){

@@ -22,16 +22,7 @@ class NewUserInput extends Component {
     handleOnSubmit = event => {
         event.preventDefault()
         let user = this.state
-        const options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        "Access-Control-Allow-Origin": "*",
-                    },
-            body: JSON.stringify({user})
-        }
-
-        this.props.get(options, '/users')
+        this.props.createUser(user)
     }
 
 

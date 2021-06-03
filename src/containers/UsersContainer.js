@@ -11,7 +11,6 @@ import { userActions } from '../actions/userActions'
 class UsersContainer extends Component {
 
     handleOnClick = () => {
-        debugger
         this.props.logout()
     } 
     render() {

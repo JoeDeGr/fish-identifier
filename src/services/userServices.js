@@ -16,13 +16,16 @@ function createUser(user) {
     debugger
     const options = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                },
         body: JSON.stringify({user})
     };
 
     return fetch(apiURL + '/users', options)
-        .then(handleResponse())
-        .then(storeUser(user))
+        .then(resp => handleResponse(resp))
+        .then(data => storeUser(data))
 }
 
 function update(user) {
@@ -73,7 +76,7 @@ function handleResponse(response) {
             const error = (data && data.message) || response.statusText;
             console.log(error)
             if (response.status === 401) {
-                
+
                 //logout if response 401
                 logout();
             }

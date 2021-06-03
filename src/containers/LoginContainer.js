@@ -9,32 +9,32 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 class LoginContainer extends Component {
 
     render() {
-        const createUser = (data) => { 
-            localStorage.setItem('user', JSON.stringify(data.user))
-        };
-        const setToken = (data) => {localStorage.setItem('token', JSON.stringify(data.user.jwt))};
+        // const createUser = (data) => { 
+        //     localStorage.setItem('user', JSON.stringify(data.user))
+        // };
+        // const setToken = (data) => {localStorage.setItem('token', JSON.stringify(data.user.jwt))};
 
-        const get = (options, location) => {
-            fetch('http://localhost:3000' + location, options)
-            .then(resp => resp.json())
-            .then(data => {
-                console.log(data);
-                createUser(data);
-                setToken(data);
-                // <Redirect to={{pathname: '/user' }}/>
+        // const get = (options, location) => {
+        //     fetch('http://localhost:3000' + location, options)
+        //     .then(resp => resp.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         createUser(data);
+        //         setToken(data);
+        //         // <Redirect to={{pathname: '/user' }}/>
                 
-            })
-        }
+        //     })
+        // }
         return(
             <div>
                 <Router>
                     <LoginNav/>
                     <Switch>
                         <Route path="/newuser">
-                            <NewUserInput createUser={ createUser } setToken = {setToken} get={get}/>
+                            <NewUserInput createUser = {this.props.createUser}/>
                         </Route>
                         <Route path="/login">
-                            <UserLogin login = { this.props.login } createUser={ createUser } setToken = {setToken} get={get}/>
+                            <UserLogin login = { this.props.login } />
                         </Route>
                     </Switch>
                 </Router> 
@@ -47,6 +47,7 @@ class LoginContainer extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         login: user => dispatch( userActions.login(user) ),
+        createUser: user => dispatch(userActions.createUser(user)),
     }
 } 
 

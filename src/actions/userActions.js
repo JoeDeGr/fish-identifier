@@ -29,7 +29,6 @@ function login (user) {
 }
 
 function logout() {
-    debugger
     userService.logout();
     history.push('/')
     return {type: 'LOGOUT'}
