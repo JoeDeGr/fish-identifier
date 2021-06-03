@@ -5,7 +5,7 @@ import UserSpecies from '../components/User/UserSpecies';
 import UserNav from '../nav/UserNav';
 import { connect } from 'react-redux';
 import { history } from '../helpers/history';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 // import { userActions } from './actions/userActions'
 
 class UsersContainer extends Component {
@@ -17,10 +17,12 @@ class UsersContainer extends Component {
                     <UserNav/>
                     <Switch>
                         <Route path='/user/genus'>
-                            <UserGenus userGenus={this.props.user.genuses}/>
+                            {/* <UserGenus userGenus={this.props.user.genuses}/> */}
+                            <UserGenus />
                         </Route>
                         <Route path ='user/species'>
-                            <UserSpecies userSpecies={this.props.user.species}/>
+                            {/* <UserSpecies userSpecies={this.props.user.species}/> */}
+                            <UserSpecies />
                         </Route>
                         <Route path='user/myphotos'>
                             {/* <UserPhotos/> */}
@@ -31,8 +33,6 @@ class UsersContainer extends Component {
                             <p>So... You Wanna Change Your Info, huh?</p>
                         </Route>
                     </Switch>
-
-
                 </Router>
                 <User user={this.props.user} />
             </div>
@@ -42,9 +42,5 @@ class UsersContainer extends Component {
 
 const mapStateToProps = state => ({ user: state.user })
 
-// const mapDispatchToProps = dispatch => ({
-//     login: userActions.login,
 
-// })
-
-export default connect( mapStateToProps )(UsersContainer)
+export default connect( mapStateToProps)(UsersContainer)

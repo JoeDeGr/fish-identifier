@@ -2,14 +2,14 @@ import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar';
-import PrivateRoute from './components/PrivateRoute'
+import  PrivateRoute  from './components/PrivateRoute'
 import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
 import GenusContainer from "./containers/GenusContainer";
 import SpeciesContainer from "./containers/SpeciesContainer";
 import Home from "./containers/Home"
 import { history } from './helpers/history';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch} from 'react-router-dom';
 
 export default function App () {
     return (
@@ -31,8 +31,8 @@ export default function App () {
                 </Route>
                 <Route path="/species">
                   <SpeciesContainer/>
-                </Route>
-                <PrivateRoute>
+                </Route >
+                <PrivateRoute path="/user">
                   <Users/>
                   {/* <Signout/> */}
                 </PrivateRoute>

@@ -14,6 +14,7 @@ function login (user) {
     debugger
     let username = user.username
     return dispatch => {
+        debugger
         dispatch({type: 'LOGIN_REQUEST', username});
 
         userService.login(user)
@@ -73,7 +74,7 @@ function createUser (user) {
     debugger
     return dispatch => {
         dispatch({type: 'CREATE_USER_REQUEST', username});
-        userService.createUser(user)
+        return userService.createUser(user)
             .then(
                 user => {
                     dispatch({type: 'CREATE_USER_SUCCESS', user});

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { userService } from '../services/userServices';
 
 class NewUserInput extends Component {
     constructor () {
@@ -21,25 +20,18 @@ class NewUserInput extends Component {
     }
 
     handleOnSubmit = event => {
-        debugger
         event.preventDefault()
-        console.log(this.state)
         let user = this.state
         const options = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        "Access-Control-Allow-Origin": "*",
+                    },
             body: JSON.stringify({user})
-        };
-        debugger
-    
-        fetch('http://localhost:3000/users', options)
-            .then(response => response.json())
-            .then(user => {
-                debugger
-                this.props.createUser(user)
-                this.props.setToken(user.token)
-                console.log(user)
-            } )
+        }
+
+        this.props.get(options, '/users')
     }
 
 

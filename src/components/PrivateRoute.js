@@ -1,19 +1,19 @@
 import React from 'react';
-import {Route, Redirect, useLocation } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 //create a private route to wrap components we want hidden.
-// const PrivateRoute = ({ component: Component, ...rest }) => (
+// export const PrivateRoute = ({ component: Component, ...rest }) => (
 
 //     <Route {...rest} render={props => (
-//         localStorage.getItem('user')
+//         localStorage.getItem('token')
 //         ? <Component {...props} />
-//         : <Redirect to={{pathname: '/login', state: {from: location}}}/>
+//         : <Redirect to={{pathname: '/login', state: {from: props.location}}}/>
 //         )}/>
 // )
 
 function PrivateRoute ({ children, ...rest }){
       return(
         <Route {...rest} render={({ location }) => {
-          return localStorage.getItem('user') 
+          return localStorage.getItem('token') 
           ? children : 
           <Redirect to={{ 
             pathname: '/login',
@@ -24,4 +24,4 @@ function PrivateRoute ({ children, ...rest }){
       )
     }
 
-export default PrivateRoute
+    export default PrivateRoute
