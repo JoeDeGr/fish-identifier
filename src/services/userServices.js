@@ -13,7 +13,6 @@ export const userService = {
 };
 
 function createUser(user) {
-    debugger
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',
@@ -41,7 +40,6 @@ function update(user) {
 }
 
 function login (user) {
-
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -70,7 +68,6 @@ function getAll () {
 function handleResponse(response) {
     
     return response.text().then(text => {
-        debugger
         const data = text && JSON.parse(text);
         if (!response.ok) {
             const error = (data && data.message) || response.statusText;
@@ -80,6 +77,7 @@ function handleResponse(response) {
                 //logout if response 401
                 logout();
             }
+            
             return Promise.reject(error);
         }
 

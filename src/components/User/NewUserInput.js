@@ -21,10 +21,8 @@ class NewUserInput extends Component {
 
     handleOnSubmit = event => {
         event.preventDefault()
-        let user = this.state
-        this.props.createUser(user)
+        this.props.createUser(this.state)
     }
-
 
     render() {
         return(
@@ -70,8 +68,6 @@ class NewUserInput extends Component {
             </div>
         )
     }
-
-
 }
 
 export default connect()(NewUserInput)

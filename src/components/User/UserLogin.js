@@ -18,9 +18,7 @@ class UserLogin extends Component {
 
     handleOnSubmit = event => {
         event.preventDefault()
-        console.log(this.state)
-        const user = this.state
-        this.props.login(user)
+        this.props.login(this.state)
     }
 
     render(){
