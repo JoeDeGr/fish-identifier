@@ -69,7 +69,7 @@ function update() {
 
 function createUser (user) {
     let username = user.username
-    debugger
+
     return dispatch => {
         dispatch({type: 'CREATE_USER_REQUEST', username});
         userService.createUser(user)

@@ -73,14 +73,11 @@ function handleResponse(response) {
             const error = (data && data.message) || response.statusText;
             console.log(error)
             if (response.status === 401) {
-
                 //logout if response 401
                 logout();
             }
-            
             return Promise.reject(error);
         }
-
         return data;
     })
 }

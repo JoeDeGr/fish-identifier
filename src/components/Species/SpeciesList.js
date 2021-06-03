@@ -10,7 +10,7 @@ class SpeciesList extends React.Component {
                 <Species
                     key = {species.id}
                     species = {species}
-                    addSpeciesToUser = {addSpeciesToUser}
+                    addSpeciesToUser = { addSpeciesToUser }
                 />
             )
         });

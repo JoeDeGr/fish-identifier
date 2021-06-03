@@ -9,9 +9,11 @@ import GenusContainer from "./containers/GenusContainer";
 import SpeciesContainer from "./containers/SpeciesContainer";
 import Home from "./containers/Home"
 import { history } from './helpers/history';
-import { Router, Route, Switch} from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 
 export default function App () {
+
+
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -49,8 +51,7 @@ export default function App () {
                   <SpeciesContainer/>
                 </Route >
                 <PrivateRoute path="/user">
-                  <Users/>
-                  {/* <UserLogout/> */}
+                  <Users />
                 </PrivateRoute>
               </Switch>
             </main>
