@@ -23,6 +23,7 @@ class UserSpecies extends React.Component {
             <div> 
                 <ul>
                     {speciesList}
+                    {!!(speciesList === null ) ? speciesList : "Add Some Species to You Life!"}
                 </ul>
             </div>
             

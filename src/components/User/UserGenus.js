@@ -19,7 +19,6 @@ class UserGenus extends React.Component {
             </li>
             )
         })
-        debugger
         return(
             <div> 
                 <ul>
