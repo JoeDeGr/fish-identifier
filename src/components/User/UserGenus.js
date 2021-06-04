@@ -7,8 +7,8 @@ class UserGenus extends React.Component {
     render() {
  
         const { userGenus } = this.props;
-        const genusList = userGenus.map( genus => {
-            return(
+        const genusList =  userGenus.map( genus => {
+            return( 
             <li id={genus.id}>
                 <Genus
                     key = {genus.id}
@@ -18,11 +18,12 @@ class UserGenus extends React.Component {
                 />
             </li>
             )
-        });
+        })
+        debugger
         return(
             <div> 
                 <ul>
-                    {genusList}
+                    {!!(genusList === null ) ? genusList : "Add Some Genus to You Life!"}
                 </ul>
             </div>
         )

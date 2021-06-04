@@ -2,7 +2,6 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './nav/NavBar';
-import UserNav from './nav/UserNav'
 import PrivateRoute  from './components/PrivateRoute'
 import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
@@ -61,7 +60,7 @@ class App extends React.Component {
                   <SpeciesContainer/>
                 </Route >
                 <PrivateRoute path="/user">
-                  <Users />
+                  <Users logout={this.props.logout} />
                 </PrivateRoute>
               </Switch>
             </main>
@@ -77,6 +76,7 @@ const mapDispatchToProps = dispatch => {
       login: user => dispatch( userActions.login(user) ),
       createUser: user => dispatch(userActions.createUser(user)),
       getAll: () => dispatch(userActions.getAll()),
+      logout: () => dispatch(userActions.logout()),
   }
 } 
 export default connect(null, mapDispatchToProps)(App)
