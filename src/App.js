@@ -2,9 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBarContainer from './containers/NavBarContainer';
-import NavBar from './nav/NavBar';
 import PrivateRoute  from './components/PrivateRoute';
-import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
 import GenusContainer from "./containers/GenusContainer";
 import SpeciesContainer from "./containers/SpeciesContainer";
@@ -16,6 +14,8 @@ import { userActions } from './actions/userActions';
 import { userToken } from './helpers/token';
 import NewUserInput from './components/User/NewUserInput';
 import UserLogin from './components/User/UserLogin';
+// import UserGenus from './components/User/UserGenus';
+// import UserSpecies from './components/User/UserSpecies';
 
 class App extends React.Component {
 
@@ -36,21 +36,18 @@ class App extends React.Component {
 
   componentDidMount(){
     const token = userToken.checkLogin()
-    
     if (token){
       this.props.getAll()
     }
   }
   render (){
-    const token = userToken
-    
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Router history = { history }>
             <main>
-              <NavBarContainer checkLogin = {userToken.checkLogin() } />
+              <NavBarContainer userToken = {userToken} logout={this.props.logout} />
               <Switch>
                 <Route path="/home">
                   <Home/>
@@ -58,21 +55,32 @@ class App extends React.Component {
                 <Route path="/Genus">
                     <GenusContainer/>
                 </Route>
-                {/* <Route path="/login">
-                    <LoginContainer history = { history } login = {this.props.login} createUser = {this.props.createUser} /> 
-                </Route> */}
                 <Route path="/newuser">
-                            <NewUserInput createUser = {this.props.createUser}/>
-                        </Route>
-                        <Route path="/login">
-                            <UserLogin login = { this.props.login } />
-                        </Route>
+                    <NewUserInput createUser = {this.props.createUser}/>
+                </Route>
+                <Route path="/login">
+                    <UserLogin login = { this.props.login } />
+                </Route>
                 <Route path="/species">
                   <SpeciesContainer/>
                 </Route >
                 <PrivateRoute path="/user">
-                  <Users logout={this.props.logout} />
+                  <Users />
                 </PrivateRoute>
+                {/* <PrivateRoute path='/users/genus'>
+                    <UserGenus userGenus={this.props.user.userGenus}/>
+                </PrivateRoute>
+                <PrivateRoute path ='/users_species'>
+                    <UserSpecies userSpecies={this.props.user.user_species}/>
+                </PrivateRoute> */}
+                {/* <PrivateRoute path='users/myphotos'>
+                    <UserPhotos/>
+                    <p>Coming Soon! Your Photos!</p>
+                </PrivateRoute>
+                <PrivateRoute path='user/update'>
+                    <UserUpdateForm/>
+                    <p>So... You Wanna Change Your Info, huh?</p>
+                </PrivateRoute> */}
               </Switch>
             </main>
           </Router>
@@ -81,6 +89,12 @@ class App extends React.Component {
     );
   }
 }
+
+// const mapStateToProps = state => {
+//   return { 
+//     user: state.users.user
+//   }
+// }
 
 const mapDispatchToProps = dispatch => {
 
@@ -91,4 +105,5 @@ const mapDispatchToProps = dispatch => {
       logout: () => dispatch(userActions.logout()),
   }
 } 
-export default connect(null, mapDispatchToProps)(App)
+
+export default connect( null, mapDispatchToProps )(App)

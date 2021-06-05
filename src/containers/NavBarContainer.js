@@ -1,16 +1,16 @@
 import React from 'react';
-import UserNav from '../nav/UserNav';
 import LoginNav from '../nav/LoginNav'
 import NavBar from '../nav/NavBar';
+import Logout from '../components/User/Logout'
 import { connect } from 'react-redux'
 
 function NavBarContainer(props) {
-    const { checkLogin } = props
-    debugger
+    // const tokenValue = props.userToken.checkLogin()
+
     return (
         <div classname='navbar'>
             <NavBar/>
-            {!!(checkLogin === null) ? (<LoginNav />) : (<UserNav/>)  }
+            { !(props.userToken.checkLogin()) ? (<LoginNav />) : (<Logout logout={props.logout} />) }
         </div>
     )
 }
