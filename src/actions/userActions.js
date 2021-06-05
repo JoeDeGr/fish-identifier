@@ -8,6 +8,7 @@ export const userActions = {
     update,
     logout,
     getAll,
+    checkLogin
 };
 
 function login (user) {
@@ -84,4 +85,10 @@ function createUser (user) {
                 }
             )
     }
+}
+
+function checkLogin() {
+    debugger
+    const token = localStorage.getItem('token')
+    return token
 }

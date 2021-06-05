@@ -9,12 +9,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class UsersContainer extends Component {
 
-    constructor(props){
-        super(props);
-        this.state ={
-            user: JSON.parse(localStorage.getItem('user'))
-        }
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.state ={
+    //         user: JSON.parse(localStorage.getItem('user'))
+    //     }
+    // }
 
     handleOnClick = () => {
         this.props.logout()
@@ -28,10 +28,10 @@ class UsersContainer extends Component {
                     <UserNav />
                     <Switch>
                         <Route path='/users/genus'>
-                            <UserGenus userGenus={this.state.user.user_genus}/>
+                            <UserGenus userGenus={this.props.userGenus}/>
                         </Route>
                         <Route path ='/users_species'>
-                            <UserSpecies userSpecies={this.state.user.user_species}/>
+                            <UserSpecies userSpecies={this.props.user_species}/>
                         </Route>
                         <Route path='users/myphotos'>
                             {/* <UserPhotos/> */}
@@ -49,12 +49,12 @@ class UsersContainer extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     debugger
-//     return { 
-//     user: state.user,
-//     userGenus: state.user.user_genus,
-//     userSpecies: state.user.user_species
-//  }}
+const mapStateToProps = state => {
+    const user = state.users.user
+    return { 
+    user: user,
+    userGenus: user.user_genus,
+    userSpecies: user.user_species
+ }}
 
-export default connect()(UsersContainer)
+export default connect(mapStateToProps)(UsersContainer)

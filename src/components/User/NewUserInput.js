@@ -27,6 +27,7 @@ class NewUserInput extends Component {
     render() {
         return(
             <div>
+                <h1> Welcome! </h1>
                 <form onSubmit = {this.handleOnSubmit}>
                     <label>Username</label>
                     <input

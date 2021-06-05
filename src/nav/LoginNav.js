@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
     return (
         <div className = 'loginNav'>
             <nav>
-            <h1> Welcome! </h1>
                 <ul>
                     <NavLink to="/newuser">Create A New Profile</NavLink><br></br>
                     <NavLink to="/login">Login</NavLink>

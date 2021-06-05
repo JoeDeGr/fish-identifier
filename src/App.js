@@ -1,17 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import NavBarContainer from './containers/NavBarContainer';
 import NavBar from './nav/NavBar';
-import PrivateRoute  from './components/PrivateRoute'
+import PrivateRoute  from './components/PrivateRoute';
 import LoginContainer from './containers/LoginContainer';
 import Users from './containers/UsersContainer';
 import GenusContainer from "./containers/GenusContainer";
 import SpeciesContainer from "./containers/SpeciesContainer";
-import Home from "./containers/Home"
+import Home from "./containers/Home";
 import { history } from './helpers/history';
 import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userActions } from './actions/userActions'
+import { userActions } from './actions/userActions';
+import { userToken } from './helpers/token';
+import NewUserInput from './components/User/NewUserInput';
+import UserLogin from './components/User/UserLogin';
 
 class App extends React.Component {
 
@@ -29,23 +33,24 @@ class App extends React.Component {
   //     })
   //   }
   // })
-  
-  
+
   componentDidMount(){
-    debugger
-    const token = localStorage.getItem('token')
+    const token = userToken.checkLogin()
+    
     if (token){
       this.props.getAll()
     }
-    }
+  }
   render (){
+    const token = userToken
+    
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Router history = { history }>
             <main>
-              <NavBar/>
+              <NavBarContainer checkLogin = {userToken.checkLogin() } />
               <Switch>
                 <Route path="/home">
                   <Home/>
@@ -53,9 +58,15 @@ class App extends React.Component {
                 <Route path="/Genus">
                     <GenusContainer/>
                 </Route>
-                <Route path="/login">
+                {/* <Route path="/login">
                     <LoginContainer history = { history } login = {this.props.login} createUser = {this.props.createUser} /> 
-                </Route>
+                </Route> */}
+                <Route path="/newuser">
+                            <NewUserInput createUser = {this.props.createUser}/>
+                        </Route>
+                        <Route path="/login">
+                            <UserLogin login = { this.props.login } />
+                        </Route>
                 <Route path="/species">
                   <SpeciesContainer/>
                 </Route >
@@ -72,6 +83,7 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
+
   return {
       login: user => dispatch( userActions.login(user) ),
       createUser: user => dispatch(userActions.createUser(user)),

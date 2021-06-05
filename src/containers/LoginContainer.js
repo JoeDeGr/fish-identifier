@@ -26,12 +26,4 @@ class LoginContainer extends Component {
     }
 }
 
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         login: user => dispatch( userActions.login(user) ),
-//         createUser: user => dispatch(userActions.createUser(user)),
-//     }
-// } 
-
 export default connect()(LoginContainer)
