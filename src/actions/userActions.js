@@ -7,8 +7,7 @@ export const userActions = {
     login,
     update,
     logout,
-    getAll,
-    checkLogin
+    getAll
 };
 
 function login (user) {
@@ -30,9 +29,12 @@ function login (user) {
 }
 
 function logout() {
-    userService.logout();
-    history.push('/')
-    return {type: 'LOGOUT'}
+    
+    return dispatch => {
+        dispatch({type: 'LOGOUT'})
+        userService.logout();
+        history.push('/')
+    }
 }
 
 function getAll() {
@@ -85,10 +87,4 @@ function createUser (user) {
                 }
             )
     }
-}
-
-function checkLogin() {
-    debugger
-    const token = localStorage.getItem('token')
-    return token
 }

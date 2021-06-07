@@ -35,11 +35,12 @@ class App extends React.Component {
   // })
 
   componentDidMount(){
-    const token = userToken.checkLogin()
+    const token = localStorage.getItem('token')
     if (token){
       this.props.getAll()
     }
   }
+
   render (){
     return (
       <div className="App">
@@ -47,7 +48,7 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <Router history = { history }>
             <main>
-              <NavBarContainer userToken = {userToken} logout={this.props.logout} />
+              <NavBarContainer loggedIn = {this.props.loggedIn} logout={this.props.logout} />
               <Switch>
                 <Route path="/home">
                   <Home/>
@@ -67,20 +68,6 @@ class App extends React.Component {
                 <PrivateRoute path="/user">
                   <Users />
                 </PrivateRoute>
-                {/* <PrivateRoute path='/users/genus'>
-                    <UserGenus userGenus={this.props.user.userGenus}/>
-                </PrivateRoute>
-                <PrivateRoute path ='/users_species'>
-                    <UserSpecies userSpecies={this.props.user.user_species}/>
-                </PrivateRoute> */}
-                {/* <PrivateRoute path='users/myphotos'>
-                    <UserPhotos/>
-                    <p>Coming Soon! Your Photos!</p>
-                </PrivateRoute>
-                <PrivateRoute path='user/update'>
-                    <UserUpdateForm/>
-                    <p>So... You Wanna Change Your Info, huh?</p>
-                </PrivateRoute> */}
               </Switch>
             </main>
           </Router>
@@ -90,20 +77,19 @@ class App extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return { 
-//     user: state.users.user
-//   }
-// }
-
+const mapStateToProps = state => {
+  return{
+    loggedIn: state.users.loggedIn
+  }
+}
 const mapDispatchToProps = dispatch => {
 
   return {
       login: user => dispatch( userActions.login(user) ),
       createUser: user => dispatch(userActions.createUser(user)),
       getAll: () => dispatch(userActions.getAll()),
-      logout: () => dispatch(userActions.logout()),
+      logout: () => dispatch(userActions.logout())
   }
 } 
 
-export default connect( null, mapDispatchToProps )(App)
+export default connect( mapStateToProps, mapDispatchToProps )(App)

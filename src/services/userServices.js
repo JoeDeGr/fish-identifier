@@ -9,7 +9,7 @@ export const userService = {
     logout,
     getAll,
     storeToken,
-    storeUser   
+    storeUser
 };
 
 function createUser(user) {
