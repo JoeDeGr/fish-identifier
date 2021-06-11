@@ -1,10 +1,9 @@
 import React from 'react';
 import LoginNav from '../nav/LoginNav'
 import NavBar from '../nav/NavBar';
-// import Logout from '../components/User/Logout'
 import { connect } from 'react-redux'
 
-function NavBarContainer (props) {
+function NavBarContainer ({loggedIn, logout}) {
 
 
 //     function navBarComponent (props) => {
@@ -25,14 +24,12 @@ function NavBarContainer (props) {
     // render () {
     
     let navBarItems;
-    if (props.loggedIn){
+    if ( !!loggedIn ) {
         debugger
-        navBarItems = <button onClick={() => { props.logout() }}>Log The f*$% Out!</button>
-        // navBarItems = <Logout logout = {this.props.logout} />
+        navBarItems = <button onClick={() => { logout() }}>Log The f*$% Out!</button>
     } else {
         debugger
         navBarItems = <LoginNav />
-        debugger
     }
         return (
             <div classname='navbar'>
@@ -41,19 +38,5 @@ function NavBarContainer (props) {
             </div>
         )
     }
-// }
-
-// const mapStateToProps = state => {
-//     return {
-//         loggedIn: state.users.loggedIn
-//     }
-// }
 
 export default connect()(NavBarContainer)
-
-// function navBarComponent (props) => {
-//     if (props.userToken.checkLogin() === null ){
-//         return <LoginNav /> 
-//     }
-//         return (<Logout logout = {this.props.logout} />)
-// }

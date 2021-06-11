@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBarContainer from './containers/NavBarContainer';
@@ -11,73 +11,56 @@ import { history } from './helpers/history';
 import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from './actions/userActions';
-import { userToken } from './helpers/token';
 import NewUserInput from './components/User/NewUserInput';
 import UserLogin from './components/User/UserLogin';
-// import UserGenus from './components/User/UserGenus';
-// import UserSpecies from './components/User/UserSpecies';
 
-class App extends React.Component {
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   if (token){
-  //     fetch('http://localhost:3000/auto_login', {
-  //       headers: {
-  //         Authorization: 'Bearer ' + token
-  //       }
-  //     })
-  //     .then(resp => resp.json)
-  //     .then(data => {
-  //       console.log(data)
-  //     })
-  //   }
-  // })
+function App({loggedIn, logout, login, createUser, getAll }) {
 
-  componentDidMount(){
-    const token = localStorage.getItem('token')
+  useEffect(() => {
+      const token = localStorage.getItem('token')
     if (token){
-      this.props.getAll()
+      getAll()
     }
-  }
+  })
 
-  render (){
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Router history = { history }>
-            <main>
-              <NavBarContainer loggedIn = {this.props.loggedIn} logout={this.props.logout} />
-              <Switch>
-                <Route path="/home">
-                  <Home/>
-                </Route>
-                <Route path="/Genus">
-                    <GenusContainer/>
-                </Route>
-                <Route path="/newuser">
-                    <NewUserInput createUser = {this.props.createUser}/>
-                </Route>
-                <Route path="/login">
-                    <UserLogin login = { this.props.login } />
-                </Route>
-                <Route path="/species">
-                  <SpeciesContainer/>
-                </Route >
-                <PrivateRoute path="/user">
-                  <Users />
-                </PrivateRoute>
-              </Switch>
-            </main>
-          </Router>
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <Router history = { history }>
+          <main>
+            <NavBarContainer loggedIn={ loggedIn } logout={ logout } />
+            <Switch>
+              <Route path="/home">
+                <Home/>
+              </Route>
+              <Route path="/Genus">
+                  <GenusContainer/>
+              </Route>
+              <Route path="/newuser">
+                  <NewUserInput createUser = { createUser }/>
+              </Route>
+              <Route path="/login">
+                  <UserLogin login = { login } />
+              </Route>
+              <Route path="/species">
+                <SpeciesContainer/>
+              </Route >
+              <PrivateRoute path="/user">
+                <Users />
+              </PrivateRoute>
+            </Switch>
+          </main>
+        </Router>
+      </header>
+    </div>
+  );
 }
 
+
 const mapStateToProps = state => {
+  debugger
   return{
     loggedIn: state.users.loggedIn
   }

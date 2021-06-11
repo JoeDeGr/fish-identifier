@@ -28,6 +28,20 @@ export default function users (state = initialState, action) {
             }
         case 'UPDATE_USER_FAILURE':
             return {}
+        case 'LOGIN_REQUEST':
+            return {
+                loggingIn: true,
+                user: action.user
+            };
+        case 'LOGIN_SUCCESS':
+            return {
+                loggedIn: true,
+                user: action.user
+            };
+        case 'LOGIN_FAILURE':
+            return {};
+        case 'LOGOUT':
+            return {};
         default:
             return state
     }
