@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import carpface from './images/carpface.JPG';
 import './App.css';
 import NavBarContainer from './containers/NavBarContainer';
 import PrivateRoute  from './components/PrivateRoute';
@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { userActions } from './actions/userActions';
 import NewUserInput from './components/User/NewUserInput';
 import UserLogin from './components/User/UserLogin';
+// import Modal from './comoponents/Modal';
 
 
 function App({loggedIn, logout, login, createUser, getAll }) {
@@ -25,35 +26,34 @@ function App({loggedIn, logout, login, createUser, getAll }) {
   })
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="app">
+
         <Router history = { history }>
-          <main>
+          <header className="app-header">
+            <img src={carpface} className="app-logo" alt="logo" />
             <NavBarContainer loggedIn={ loggedIn } logout={ logout } />
-            <Switch>
-              <Route path="/home">
-                <Home/>
-              </Route>
-              <Route path="/Genus">
-                  <GenusContainer/>
-              </Route>
-              <Route path="/newuser">
-                  <NewUserInput createUser = { createUser }/>
-              </Route>
-              <Route path="/login">
-                  <UserLogin login = { login } />
-              </Route>
-              <Route path="/species">
-                <SpeciesContainer/>
-              </Route >
-              <PrivateRoute path="/user">
-                <Users />
-              </PrivateRoute>
-            </Switch>
-          </main>
+          </header>
+          <Switch>
+            <Route path="/home">
+              <Home/>
+            </Route>
+            <Route path="/Genus">
+                <GenusContainer/>
+            </Route>
+            <Route path="/newuser">
+                <NewUserInput createUser = { createUser }/>
+            </Route>
+            <Route path="/login">
+                <UserLogin login = { login } />
+            </Route>
+            <Route path="/species">
+              <SpeciesContainer/>
+            </Route >
+            <PrivateRoute path="/user">
+              <Users />
+            </PrivateRoute>
+          </Switch>
         </Router>
-      </header>
     </div>
   );
 }

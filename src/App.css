@@ -1,8 +1,54 @@
-.App {
+*{
+  margin: 0
+}
+.app {
+  background-color: rgba(49, 135, 248, 0.246);
+
+}
+
+.app-welcome{
   text-align: center;
 }
 
-.App-logo {
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px black;
+  object-fit: contain;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  max-height: 350px;
+
+}
+
+.app-logo{
+  max-width:350px;
+  max-height:350px;
+  width: 50%;
+  object-fit: contain;
+}
+
+.app_auth{
+  padding: 10px
+}
+
+.app_signup{
+  display:flex;
+  flex-direction: column;
+}
+
+.app_posts {
+  padding: 15px;
+  /* flex-wrap: wrap;
+  flex-direction: column; */
+  justify-content: center;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -22,7 +68,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
