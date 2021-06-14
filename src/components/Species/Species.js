@@ -10,10 +10,10 @@ class Species extends React.Component {
         const { species } = this.props
 
         return(
-            <div>
+            <div className="species-show">
+                <h3>{species.common_name}</h3>
                 <ul>
-                    <lh>{species.common_name}</lh>
-                    <li>Species Database id: {species.id}</li><br></br>
+                    <li>Species Database id: {species.id}</li>
                     <li>Scientific Name: {species.scientific_name}</li>
                     <li>Habitat: {species.habitat}</li>
                     <li>Distribution: {species.distribution}</li>

@@ -13,7 +13,7 @@ function loadGenus(){
         appServices.loadGenus()
         .then(
             genus => {
-                dispatch({type: 'LOAD_GENUS_SUCCESS'});
+                dispatch({type: 'LOAD_GENUS_SUCCESS', genus});
             },
             error => {
                 dispatch({type: 'LOAD_GENUS_FAILURE', error});
@@ -29,7 +29,7 @@ function loadSpecies(){
         appServices.loadSpecies()
         .then(
             species => {
-                dispatch({type: 'LOAD_SPECIES_SUCCESS'});
+                dispatch({type: 'LOAD_SPECIES_SUCCESS', species});
             },
             error => {
                 dispatch({type: 'LOAD_SPECIES_FAILURE', error});

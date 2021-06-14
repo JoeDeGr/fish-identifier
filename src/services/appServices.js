@@ -13,9 +13,10 @@ function loadGenus() {
         headers: { 'content-Type' : 'application/json' },
     }
 
-    return fetch ('$(apiURL/genus', options )
+    return fetch (apiURL + '/genus', options )
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)})
 }
 
 function loadSpecies() {
@@ -23,8 +24,10 @@ function loadSpecies() {
         method: 'GET',
         headers: { 'content-Type' : 'application/json' },
     }
-
-    return fetch ( '$(apiURL/species', options )
+    
+    return fetch ( apiURL + '/species', options )
         .then(resp => resp.json())
-        .then( data => console.log(data))
+        .then( data => {
+            return data.species
+        })
 }
