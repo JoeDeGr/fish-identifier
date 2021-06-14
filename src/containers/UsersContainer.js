@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import User from '../components/User/User';
 import UserGenus from '../components/User/UserGenus';
 import UserSpecies from '../components/User/UserSpecies';
+import UserUpdateForm from '../components/User/UserUpdateForm'
 import UserNav from '../nav/UserNav';
 import { connect } from 'react-redux';
 import { history } from '../helpers/history';
@@ -19,15 +20,15 @@ class UsersContainer extends Component {
                         <Route path='/users/genus'>
                             <UserGenus userGenus={this.props.user.user_genus}/>
                         </Route>
-                        <Route path ='/users_species'>
+                        <Route path ='/users/species'>
                             <UserSpecies userSpecies={this.props.user.user_species}/>
                         </Route>
-                        <Route path='users/myphotos'>
+                        <Route path='/users/myphotos'>
                             {/* <UserPhotos/> */}
                             <p>Coming Soon! Your Photos!</p>
                         </Route>
-                        <Route path='user/update'>
-                            {/* <UserUpdateForm/> */}
+                        <Route path='/users/update'>
+                            <UserUpdateForm user={this.props.user} />
                             <p>So... You Wanna Change Your Info, huh?</p>
                         </Route>
                     </Switch>
@@ -41,9 +42,7 @@ class UsersContainer extends Component {
 const mapStateToProps = state => {
     const user = state.users.user
     return { 
-        user: user,
-        // userGenus: user.user_genus,
-        // userSpecies: user.user_species
+        user: user
     }
 }
 

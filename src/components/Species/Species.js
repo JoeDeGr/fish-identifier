@@ -15,6 +15,7 @@ class Species extends React.Component {
                 <ul>
                     <li>Species Database id: {species.id}</li>
                     <li>Scientific Name: {species.scientific_name}</li>
+                    <li>Typical size: {species.size}</li>
                     <li>Habitat: {species.habitat}</li>
                     <li>Distribution: {species.distribution}</li>
                     <li>Game Qualities: {species.game_qualities}</li>

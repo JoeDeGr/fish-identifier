@@ -5,9 +5,10 @@ const UserNav = () => {
     return (
         <div className = "navBar-user">
             <nav>
-                <NavLink to='/users/genus'>My Genus</NavLink><br></br>
-                <NavLink to='/users_species'>My Species</NavLink><br></br>
-                <NavLink to='/users/myphotos'>My Photos</NavLink><br></br>
+                <NavLink to='/users/genus'>My Genus</NavLink>
+                <NavLink to='/users/species'>My Species</NavLink>
+                <NavLink to='/users/myphotos'>My Photos</NavLink>
+                <NavLink to='users/update'>Update My Info</NavLink>
              </nav>
         </div>
     )
