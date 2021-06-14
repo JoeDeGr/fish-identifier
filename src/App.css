@@ -1,10 +1,10 @@
 *{
   margin: 0;
-
 }
+
 .app {
   background-color: rgba(49, 135, 248, 0.246);
-
+  height: 100vh
 }
 
 .app-welcome{
@@ -34,10 +34,34 @@
 }
 
 .navBar{
-  display: inline-flex;
+  border: 1px solid red;
+  display: flex;
+  flex: 1;
   background: white;
   padding: 10px;
-  Justify-content: space-between;
+  justify-content: space-between;
+  max-height:350px;
+
+}
+.navBar-login{
+  border: 1px solid red;
+  display: flex;
+  flex: 1;
+  background: white;
+  padding: 10px;
+  justify-content: space-between;
+  max-height:350px;
+
+}
+.navBar-static{
+  border: 1px solid red;
+  display: flex;
+  flex: 1;
+  background: white;
+  padding: 10px;
+  justify-content: space-between;
+  max-height:350px;
+
 }
 
 .nav-user {

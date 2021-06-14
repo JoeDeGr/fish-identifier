@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 
  const LoginNav = () => {
     return (
-        <nav>
+        <>
             <NavLink to="/newuser">Create A New Profile</NavLink>
             <NavLink to="/login">Login</NavLink>
-        </nav>
+        </>
     );
 };
 

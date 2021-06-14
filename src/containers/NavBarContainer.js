@@ -10,7 +10,7 @@ function NavBarContainer ({loggedIn, logout}) {
 
     if ( !!loggedIn ) {
 
-        navBarItems = <button onClick={() => { logout() }}>Log The f*$% Out!</button>
+        navBarItems = <button onClick={() => { logout() }}>Log Out!</button>
 
     } else {
 
