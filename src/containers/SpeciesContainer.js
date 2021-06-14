@@ -3,6 +3,11 @@ import SpeciesList from '../components/Species/SpeciesList';
 import { connect } from 'react-redux'
 
 class SpeciesContainer extends Component {
+    
+    componentDidMount(){
+        
+    }
+
     render () {
         return (
             <div>

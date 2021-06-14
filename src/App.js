@@ -23,11 +23,10 @@ function App({loggedIn, logout, login, createUser, getAll }) {
     if (token){
       getAll()
     }
-  })
+  });
 
   return (
     <div className="app">
-
         <Router history = { history }>
           <header className="app-header">
             <img src={carpface} className="app-logo" alt="logo" />
@@ -37,7 +36,7 @@ function App({loggedIn, logout, login, createUser, getAll }) {
             <Route path="/home">
               <Home/>
             </Route>
-            <Route path="/Genus">
+            <Route path="/genus">
                 <GenusContainer/>
             </Route>
             <Route path="/newuser">
@@ -60,7 +59,6 @@ function App({loggedIn, logout, login, createUser, getAll }) {
 
 
 const mapStateToProps = state => {
-  debugger
   return{
     loggedIn: state.users.loggedIn
   }

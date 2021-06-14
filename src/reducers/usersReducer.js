@@ -1,7 +1,7 @@
 let user = JSON.parse(localStorage.getItem('user'));
-const initialState = user ? {loggedIn: true, user } : {loggedIn: false};
+const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
 
-export default function users (state = initialState, action) {
+export default function users ( state = initialState, action ) {
     switch(action.type) {
         case 'CREATE_USER_REQUEST':
             return {

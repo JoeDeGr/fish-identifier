@@ -1,14 +1,15 @@
 import React from 'react';
 import LoginNav from '../nav/LoginNav'
-import NavBar from '../nav/NavBar';
-import { connect } from 'react-redux'
+import StaticNav from '../nav/StaticNav';
+import { connect } from 'react-redux';
+// import Navbar from 'react-bootstrap/Navbar'
 
 function NavBarContainer ({loggedIn, logout}) {
     
     let navBarItems;
 
     if ( !!loggedIn ) {
-        
+
         navBarItems = <button onClick={() => { logout() }}>Log The f*$% Out!</button>
 
     } else {
@@ -16,9 +17,11 @@ function NavBarContainer ({loggedIn, logout}) {
         navBarItems = <LoginNav />
     }
         return (
-            <div classname='navbar'>
-                <NavBar/>
-                { navBarItems }
+            <div className='navBar'>
+                {/* <NavBar> */}
+                    <StaticNav/>
+                    { navBarItems }
+                {/* </NavBar> */}
             </div>
         )
     }

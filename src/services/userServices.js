@@ -1,4 +1,5 @@
 import { authHeader } from '../helpers/auth-header'
+// import { apiURL } from '../helpers/apiURL'
 
 const apiURL = 'http://localhost:3000' 
 
@@ -62,7 +63,7 @@ function getAll () {
         headers: authHeader()
     }
 
-    return fetch('$(apiURL}/auto_login', options)
+    return fetch( '$(apiURL}/auto_login', options )
         .then(response => handleResponse(response))
         .then(data => console.log(data));
 }

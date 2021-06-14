@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const UserNav = () => {
     return (
-        <div className = "userNav">
+        <div className = "navBar-user">
             <nav>
                 <NavLink to='/users/genus'>My Genus</NavLink><br></br>
                 <NavLink to='/users_species'>My Species</NavLink><br></br>

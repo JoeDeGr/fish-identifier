@@ -1,5 +1,5 @@
 import { userService } from '../services/userServices';
-import { alertActions } from './alertActions'
+import { alertActions } from './alertActions';
 import { history } from '../helpers/history'
 
 export const userActions = {
