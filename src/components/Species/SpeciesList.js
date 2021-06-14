@@ -15,7 +15,7 @@ class SpeciesList extends React.Component {
             ) 
         }) : ( <p>Loading</p> ));
         return(
-            <div className="species-List">
+            <div className="species-list">
                 {speciesList}
             </div>
         )

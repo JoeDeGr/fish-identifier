@@ -1,7 +1,5 @@
 import { authHeader } from '../helpers/auth-header'
-// import { apiURL } from '../helpers/apiURL'
-
-const apiURL = 'http://localhost:3000' 
+import { apiURL } from '../helpers/apiURL'
 
 export const userService = {
     createUser,

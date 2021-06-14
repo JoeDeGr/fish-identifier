@@ -1,5 +1,6 @@
 history.push as login redirect?
 
+apiURL is in helpers/apiURL
 
 # Prefix Verb               URI Patter                      Controller#Action
     genus_show GET          /genus/show(.:format)            genus#show
@@ -12,3 +13,6 @@ history.push as login redirect?
     login POST              /login(.:format)                 auth#login
     auto_login GET          /auto_login(.:format)            auth#auto_login
     authorized_user GET     /authorized_user(.:format)       auth#authorized_user
+
+
+

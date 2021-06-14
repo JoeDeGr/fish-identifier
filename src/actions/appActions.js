@@ -2,15 +2,15 @@ import { alertActions } from './alertActions';
 import { appServices } from '../services/appServices'
 
 export const appActions = {
-    loadGenus,
+    loadGenera,
     loadSpecies
 
 };
 
-function loadGenus(){
+function loadGenera(){
     return dispatch => {
         dispatch({type: 'LOAD_GENUS_REQUEST'});
-        appServices.loadGenus()
+        appServices.loadGenera()
         .then(
             genus => {
                 dispatch({type: 'LOAD_GENUS_SUCCESS', genus});

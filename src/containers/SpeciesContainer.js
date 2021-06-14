@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SpeciesList from '../components/Species/SpeciesList';
 import { appActions } from '../actions/appActions'
 import { connect } from 'react-redux'
+import { whatIsASpecies } from '../helpers/descriptions'
 
 class SpeciesContainer extends Component {
 
@@ -12,11 +13,16 @@ class SpeciesContainer extends Component {
     render () {
         return (
             <div>
-                <p> From You I Exists. </p>
-                <SpeciesList
-                    specy={this.props.specy}
-                    addSpeciesToUser = { this.props.addSpeciesToUser }
-                />
+                <sub className="sub-heading">
+                    <h1>Species</h1>
+                    <p>{whatIsASpecies}</p>
+                </sub>
+                <div className="species-list">
+                    <SpeciesList
+                        specy={this.props.specy}
+                        addSpeciesToUser = { this.props.addSpeciesToUser }
+                    />
+                </div>
             </div>
         );
     };

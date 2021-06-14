@@ -1,13 +1,11 @@
-// import { apiURL } from '../helpers/apiURL'
-
-const apiURL = 'http://localhost:3000' 
+import { apiURL } from '../helpers/apiURL'
 
 export const appServices = {
-    loadGenus,
+    loadGenera,
     loadSpecies
 };
 
-function loadGenus() {
+function loadGenera() {
     const options = {
         method: 'GET',
         headers: { 'content-Type' : 'application/json' },
@@ -16,7 +14,8 @@ function loadGenus() {
     return fetch (apiURL + '/genus', options )
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)})
+            return data.genus 
+        })
 }
 
 function loadSpecies() {

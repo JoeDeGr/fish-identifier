@@ -4,8 +4,9 @@ import Genus from './Genus';
 class GenusList extends React.Component {
 
     render() {
-        const { genuses, addGenusToUser } = this.props;
-        const genusList = genuses.map( genus => {
+        const { genera, addGenusToUser } = this.props;
+
+        const genusList = ( (genera?.genera) ? genera.genera.map( genus => {
             return (
                 <Genus
                     key = {genus.id}
@@ -13,11 +14,11 @@ class GenusList extends React.Component {
                     addGenusToUser = {addGenusToUser}
                 />
             )
-        });
+        }) : ( <p>loading</p>));
         return(
-            <ul>
+            <div className="genus-list">
                 {genusList}
-            </ul>
+            </div>
         )
     }
 }
