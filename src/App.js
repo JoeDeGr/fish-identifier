@@ -32,27 +32,30 @@ function App({loggedIn, logout, login, createUser, getAll }) {
             <img src={carpface} className="app-logo" alt="logo" />
             <NavBarContainer loggedIn={ loggedIn } logout={ logout } />
           </header>
-          <Switch>
-            <Route path="/home">
-              <Home/>
-            </Route>
-            <Route path="/genus">
-                <GenusContainer/>
-            </Route>
-            <Route path="/newuser">
-                <NewUserInput createUser = { createUser }/>
-            </Route>
-            <Route path="/login">
-                <UserLogin login = { login } />
-            </Route>
-            <Route path="/species">
-              <SpeciesContainer/>
-            </Route >
-            <PrivateRoute path="/user">
-              <Users />
-            </PrivateRoute>
-          </Switch>
+          <body className="app-body">
+            <Switch>
+              <Route path="/home">
+                <Home/>
+              </Route>
+              <Route path="/genus">
+                  <GenusContainer/>
+              </Route>
+              <Route path="/newuser">
+                  <NewUserInput createUser = { createUser }/>
+              </Route>
+              <Route path="/login">
+                  <UserLogin login = { login } />
+              </Route>
+              <Route path="/species">
+                <SpeciesContainer/>
+              </Route >
+              <PrivateRoute path="/user">
+                <Users />
+              </PrivateRoute>
+            </Switch>
+          </body>
         </Router>
+        
     </div>
   );
 }

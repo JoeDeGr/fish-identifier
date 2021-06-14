@@ -2,13 +2,15 @@
   margin: 0;
 }
 
-.app {
+/* .app {
   background-color: rgba(49, 135, 248, 0.246);
-  height: 100vh
-}
+  height: 100;
+} */
 
-.app-welcome{
+.app-greeting{
   text-align: center;
+  /* background-color: rgba(49, 135, 248, 0.246); */
+  height: 100;
 }
 
 .app-header {
@@ -31,48 +33,36 @@
   max-height:350px;
   width: 50%;
   object-fit: contain;
+  display: flex;
+  flex: .4;
+}
+.app-body {
+  text-align: center;
+  background-color: rgba(49, 135, 248, 0.246);
+  height: 100vh;
 }
 
 .navBar{
   border: 1px solid red;
   display: flex;
-  flex: 1;
+  flex: .6;
   background: white;
   padding: 10px;
   justify-content: space-between;
   max-height:350px;
 
 }
-.navBar-login{
-  border: 1px solid red;
+
+.navBar-user {
+
   display: flex;
-  flex: 1;
-  background: white;
-  padding: 10px;
+  flex-direction: column;
+  border: 1px solid darkblue;
+  position: fixed;        
+
+  background-color: white;
+  justify-content: space-evenly;
   justify-content: space-between;
-  max-height:350px;
-
-}
-.navBar-static{
-  border: 1px solid red;
-  display: flex;
-  flex: 1;
-  background: white;
-  padding: 10px;
-  justify-content: space-between;
-  max-height:350px;
-
-}
-
-.nav-user {
-  position: fixed;     
-  height: 100%;
-  width: 75px;     
-  z-index: 1; 
-  top: 3.4em;   
-  background-color: #222;
-  overflow-x: hidden; 
-  padding-top: 10px;
 }
 
 /* 

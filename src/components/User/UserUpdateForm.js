@@ -27,7 +27,7 @@ class UserUpdateForm extends Component {
     render() {
         debugger
         return(
-            <div className="login-newUser">
+            <div className="user-update">
                 <h1> Welcome! </h1>
                 <form onSubmit = {this.handleOnSubmit}>
                     <label>Username</label>
