@@ -2,6 +2,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
 
 export default function users ( state = initialState, action ) {
+    debugger
     switch(action.type) {
         case 'CREATE_USER_REQUEST':
             return {
@@ -42,6 +43,12 @@ export default function users ( state = initialState, action ) {
             return {};
         case 'LOGOUT':
             return {};
+        case 'ADD_SPECIES_TO_USER':
+            console.log(action.species_id)
+            return state
+        case 'ADD_GENUS_TO_USER':
+            console.log(action.genus_id)
+            return state
         default:
             return state
     }

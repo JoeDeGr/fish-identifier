@@ -18,17 +18,17 @@ class UsersContainer extends Component {
                     <UserNav />
                     <Switch>
                         <Route path='/users/genus'>
-                            <UserGenus userGenus={this.props.user.user_genus}/>
+                            <UserGenus userGenus={this.props.user_genus}/>
                         </Route>
                         <Route path ='/users/species'>
-                            <UserSpecies userSpecies={this.props.user.user_species}/>
+                            <UserSpecies userSpecies={this.props.user_species}/>
                         </Route>
                         <Route path='/users/myphotos'>
                             {/* <UserPhotos/> */}
                             <p>Coming Soon! Your Photos!</p>
                         </Route>
                         <Route path='/users/update'>
-                            <UserUpdateForm user={this.props.user} />
+                            <UserUpdateForm user={this.props.user} updateUser={this.props.updateUser}/>
                             <p>So... You Wanna Change Your Info, huh?</p>
                         </Route>
                     </Switch>
@@ -42,7 +42,9 @@ class UsersContainer extends Component {
 const mapStateToProps = state => {
     const user = state.users.user
     return { 
-        user: user
+        user: user,
+        userSpecies: user.user_species,
+        userGenus: user.user_genus
     }
 }
 

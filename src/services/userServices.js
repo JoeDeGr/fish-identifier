@@ -23,22 +23,29 @@ function createUser(user) {
 
     return fetch(apiURL + '/users', options)
         .then(resp => handleResponse(resp))
-        .then(data => storeUser(data))
+        .then(data => {
+            storeToken(data)
+            return storeUser(data)
+        });
 }
 
 function update(user) {
     const options = {
-        method: 'POST',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({user})
     };
 
-    return fetch(apiURL + '/users', options)
-        .then(handleResponse())
-        .then(storeUser(user))
+    return fetch(apiURL + '/users/' + user.id, options)
+        .then(resp => handleResponse(resp))
+        .then(data => {
+            console.log(data)
+            return storeUser(data)
+        })
 }
 
 function login (user) {
+    debugger
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,7 +54,10 @@ function login (user) {
 
     return fetch(apiURL + '/login', options)
         .then(resp => handleResponse(resp))
-        .then(data => storeUser(data));
+        .then(data => {
+            storeToken(data)
+            return storeUser(data)
+        });
 }
 
 function logout() {
@@ -55,15 +65,14 @@ function logout() {
     localStorage.removeItem('token')
 }
 
-function getAll () {
+function getAll() {
     const options = {
         method: 'GET',
         headers: authHeader()
     }
-
-    return fetch( '$(apiURL}/auto_login', options )
-        .then(response => handleResponse(response))
-        .then(data => console.log(data));
+    return fetch( apiURL + '/auto_login', options )
+    .then(resp => handleResponse(resp))
+    .then(data => storeUser(data));
 }
 
 function handleResponse(response) {
@@ -74,7 +83,6 @@ function handleResponse(response) {
             const error = (data && data.message) || response.statusText;
             console.log(error)
             if (response.status === 401) {
-                //logout if response 401
                 logout();
             }
             return Promise.reject(error);
@@ -85,12 +93,9 @@ function handleResponse(response) {
 
 function storeUser(data) {
     localStorage.setItem('user', JSON.stringify(data.user));
-    storeToken(data.user)
-    console.log(data.user)
     return data.user;
 }
 
-function storeToken(user) {
-    let token = localStorage.setItem('token', JSON.stringify(user.jwt));
-    return token;
+function storeToken(data) {
+    localStorage.setItem('token', JSON.stringify(data.user.jwt));
 }

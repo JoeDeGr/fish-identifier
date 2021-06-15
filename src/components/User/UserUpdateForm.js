@@ -25,7 +25,6 @@ class UserUpdateForm extends Component {
     }
 
     render() {
-        debugger
         return(
             <div className="user-update">
                 <h1> Welcome! </h1>

@@ -13,9 +13,6 @@ export default function species (state=[], action) {
             return {
                 dataLoaded: false
             }
-        case 'ADD_SPECIES_TO_USER':
-            console.log(action.species_id)
-            return state
         default:
             return state
     }

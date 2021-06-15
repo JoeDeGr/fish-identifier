@@ -16,11 +16,11 @@ import UserLogin from './components/User/UserLogin';
 // import Modal from './comoponents/Modal';
 
 
-function App({loggedIn, logout, login, createUser, getAll }) {
+function App({loggedIn, logout, login, createUser, getAll, updateUser }) {
 
   useEffect(() => {
       const token = localStorage.getItem('token')
-    if (token){
+    if (!!token || (token === "undefined")){
       getAll()
     }
   });
@@ -50,7 +50,7 @@ function App({loggedIn, logout, login, createUser, getAll }) {
                 <SpeciesContainer/>
               </Route >
               <PrivateRoute path="/user">
-                <Users />
+                <Users updateUser={ updateUser } />
               </PrivateRoute>
             </Switch>
           </body>
@@ -72,7 +72,8 @@ const mapDispatchToProps = dispatch => {
       login: user => dispatch( userActions.login(user) ),
       createUser: user => dispatch(userActions.createUser(user)),
       getAll: () => dispatch(userActions.getAll()),
-      logout: () => dispatch(userActions.logout())
+      logout: () => dispatch(userActions.logout()),
+      updateUser: user => dispatch(userActions.updateUser(user))
   }
 } 
 

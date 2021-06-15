@@ -5,12 +5,13 @@ import { history } from '../helpers/history'
 export const userActions = {
     createUser,
     login,
-    update,
+    updateUser,
     logout,
     getAll
 };
 
 function login (user) {
+    debugger
     let username = user.username
     return dispatch => {
         dispatch({type: 'LOGIN_REQUEST', username});
@@ -18,7 +19,7 @@ function login (user) {
             .then(
                 user => {
                     dispatch({type: 'LOGIN_SUCCESS', user});
-                    history.push('/');
+                    history.push('/user');
                 },
                 error => {
                     dispatch({type: 'LOGIN_FAILURE', error});
@@ -31,32 +32,32 @@ function login (user) {
 function logout() {
     
     return dispatch => {
-        dispatch({type: 'LOGOUT'})
+        dispatch({type: 'LOGOUT'});
+        history.push('/');
         userService.logout();
-        history.push('/')
+        
     }
 }
 
 function getAll() {
+
     return dispatch => {
         dispatch({ type: 'GETALL_REQUEST'});
-
         userService.getAll()
             .then(
-                user => dispatch({ type: 'GETALL_SUCCESS', user}),
+                user => dispatch({ type: 'LOGIN_SUCCESS', user}),
                 error => {
-                    dispatch({ type: 'GETALL_FAILURE', error});
+                    dispatch({ type: 'LOGIN_FAILURE', error});
                     dispatch( alertActions.error(error));
                 }
-            )
+            );
     }
 }
 
-function update() {
+function updateUser(user) {
     return dispatch => {
         dispatch({type: 'UPDATE_USER_REQUEST'});
-
-        userService.update()
+        userService.update(user)
             .then(
                 user => {
                     dispatch({ type: 'UPDATE_USER_SUCCESS', user});
