@@ -16,7 +16,7 @@ import UserLogin from './components/User/UserLogin';
 // import Modal from './comoponents/Modal';
 
 
-function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser, addGenusToUser }) {
+function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser, addGenusToUser, removeSpecies, removeGenus }) {
   
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpecie
                 <SpeciesContainer addSpeciesToUser={ addSpeciesToUser }/>
               </Route >
               <PrivateRoute path="/user">
-                <Users updateUser={updateUser} />
+                <Users updateUser={updateUser} removeSpecies={removeSpecies}  removeGenus={removeGenus}/>
               </PrivateRoute>
             </Switch>
           </body>
@@ -78,7 +78,9 @@ const mapDispatchToProps = dispatch => {
       logout: () => dispatch(userActions.logout()),
       updateUser: user => dispatch(userActions.updateUser(user)),
       addSpeciesToUser: species  => dispatch(userActions.addSpeciesToUser(species)),
-      addGenusToUser: genus => dispatch(userActions.addGenusToUser(genus))
+      addGenusToUser: genus => dispatch(userActions.addGenusToUser(genus)),
+      removeSpecies: species => dispatch(userActions.removeSpecies(species)),
+      removeGenus: genus => dispatch(userActions.removeGenus(genus))
   }
 } 
 

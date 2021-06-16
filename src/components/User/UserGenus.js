@@ -2,7 +2,7 @@ import React from 'react';
 import Genus from '../Genus/Genus'
 import { connect } from 'react-redux'
 
-function UserGenus ({userGenus}){
+function UserGenus ({userGenus, removeGenus}){
 
     const genusList =  ((!!userGenus) ? userGenus.map( genus => {
         return( 
@@ -10,7 +10,7 @@ function UserGenus ({userGenus}){
             <Genus
                 key = {genus.id}
                 genus = {genus}
-                // removeGenus = {removeGenus}
+                removeGenus = {removeGenus}
             />
         </div>
         )

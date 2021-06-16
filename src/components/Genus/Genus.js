@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Genus=({genus, addGenusToUser}) => {
+const Genus=({genus, addGenusToUser, removeGenus}) => {
 
     return(
         <div className="genus-show">
@@ -15,6 +15,7 @@ const Genus=({genus, addGenusToUser}) => {
                 <li>Game Qualities: {genus.game_qualities}</li>
                 <li>Description: {genus.description}</li>
                 {(!!addGenusToUser) ? (<button onClick={() => addGenusToUser(genus)}>Add Me To Your List!</button>) : <></>}
+                {(!!removeGenus) ? (<button onClick={() => removeGenus(genus)}>Remove Me From Your List!</button>) : <></>}
             </ul>
         </div>
     )

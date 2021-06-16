@@ -10,7 +10,9 @@ export const userService = {
     storeToken,
     storeUser,
     addSpeciesToUser,
-    addGenusToUser
+    addGenusToUser,
+    removeSpecies,
+    removeGenus
 };
 
 function createUser(user) {
@@ -48,7 +50,6 @@ function updateUser(user) {
         })
 }
 
-
 function addSpeciesToUser(species){
     const options = {
         method: 'PATCH',
@@ -75,6 +76,37 @@ function addGenusToUser(genus){
     };
 
     return fetch(apiURL + '/users/addGenus', options)
+        .then(resp => handleResponse(resp))
+        .then(data => {
+            return (storeUser(data))
+        })
+}
+function removeSpecies(species){
+    const options = {
+        method: 'PATCH',
+        headers: {  'Content-Type': 'application/json',
+                    'Authorization' : authHeader()
+                 },
+        body: JSON.stringify({species})
+    };
+
+    return fetch(apiURL + '/users/removeSpecies', options)
+        .then(resp => handleResponse(resp))
+        .then(data => {
+            return (storeUser(data))
+        })
+}
+
+function removeGenus(genus){
+    const options = {
+        method: 'PATCH',
+        headers: {  'Content-Type': 'application/json',
+                    'Authorization' : authHeader()
+                 },
+        body: JSON.stringify({genus})
+    };
+
+    return fetch(apiURL + '/users/removeGenus', options)
         .then(resp => handleResponse(resp))
         .then(data => {
             return (storeUser(data))

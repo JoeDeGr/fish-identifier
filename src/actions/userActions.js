@@ -58,7 +58,6 @@ function getAll() {
 }
 
 function updateUser(user) {
-    debugger
     return dispatch => {
         dispatch({type: 'UPDATE_USER_REQUEST'});
         userService.updateUser(user)
@@ -131,22 +130,35 @@ function addGenusToUser( genus ){
 }
 
 function removeSpecies(species){
-
+    return dispatch => {
+        dispatch({type: 'REMOVE_SPECIES_FROM_USER_REQUEST', species })
+        userService.removeSpecies(species)
+        .then(
+            user => {
+                dispatch({type: 'REMOVE_SPECIES_FROM_USER_SUCCESS', user});
+                history.push('users/species');
+            },
+            error => {
+                dispatch({type: 'REMOVE_SPECIES_FROM_USER_FAILURE', error});
+                dispatch(alertActions.error(error));
+            }
+        )
+    }
 }
 
 function removeGenus(genus){
     return dispatch => {
-        dispatch({type: 'REMOVE_GENUS_TO_USER_REQUEST', genus })
-        userService.remove(genus)
+        dispatch({type: 'REMOVE_GENUS_REQUEST', genus })
+        userService.removeGenus(genus)
         .then(
             user => {
-                dispatch({type: 'REMOVE_GENUS_TO_USER_SUCCESS', user});
-                history.push('/genus');
+                dispatch({type: 'REMOVE_GENUS_SUCCESS', user});
+                history.push('users/genus');
             },
             error => {
-                dispatch({type: 'REMOVE_GENUS_TO_USER_FAILURE', error});
+                dispatch({type: 'REMOVE_GENUS_FAILURE', error});
                 dispatch(alertActions.error(error));
             }
         )
-
+    }
 }

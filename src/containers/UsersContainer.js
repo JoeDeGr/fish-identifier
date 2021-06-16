@@ -20,10 +20,10 @@ class UsersContainer extends Component {
                     <div className='user-myStuff'>
                     <Switch>
                         <Route path='/users/genus'>
-                            <UserGenus userGenus={this.props.userGenus}/>
+                            <UserGenus userGenus={this.props.userGenus} removeGenus={this.props.removeGenus}/>
                         </Route>
                         <Route path ='/users/species'>
-                            <UserSpecies userSpecies={this.props.userSpecies}/>
+                            <UserSpecies userSpecies={this.props.userSpecies} removeSpecies={this.props.removeSpecies}/>
                         </Route>
                         <Route path='/users/myphotos'>
                             {/* <UserPhotos/> */}
