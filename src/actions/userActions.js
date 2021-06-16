@@ -7,7 +7,9 @@ export const userActions = {
     login,
     updateUser,
     logout,
-    getAll
+    getAll,
+    addSpeciesToUser,
+    addGenusToUser
 };
 
 function login (user) {
@@ -88,4 +90,44 @@ function createUser (user) {
                 }
             )
     }
+}
+
+function addSpeciesToUser(species, user){
+    debugger
+    return dispatch => {
+        dispatch({type: 'ADD_SPECIES_TO_USER_REQUEST', species })
+        userService.addSpeciesToUser(user)
+        // .then(
+        //     user => {
+        //         dispatch({type: 'ADD_SPECIES_TO_USER_SUCCESS', user});
+        //         history.push('/species');
+        //     },
+        //     error => {
+        //         dispatch({type: 'ADD_SPECIES_TO_USER_FAILURE', error});
+        //         dispatch(alertActions.error(error));
+        //     }
+        // )
+    }
+
+}
+function addGenusToUser( genus ){
+
+    return dispatch => {
+        dispatch({type: 'ADD_GENUS_TO_USER_REQUEST', genus })
+        .then(resp => {
+            console.log(resp)
+        })
+        // userServices.addGenusToUser(genus)
+        // .then(
+        //     user => {
+        //         dispatch({type: 'ADD_GENUS_TO_USER_SUCCESS', user});
+        //         history.push('/genus');
+        //     },
+        //     error => {
+        //         dispatch({type: 'ADD_GENUS_TO_USER_FAILURE', error});
+        //         dispatch(alertActions.error(error));
+        //     }
+        // )
+    }
+
 }

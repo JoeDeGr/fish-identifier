@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import carpface from './images/carpface.JPG';
 import './App.css';
 import NavBarContainer from './containers/NavBarContainer';
@@ -16,11 +16,12 @@ import UserLogin from './components/User/UserLogin';
 // import Modal from './comoponents/Modal';
 
 
-function App({loggedIn, logout, login, createUser, getAll, updateUser }) {
+function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser }) {
 
   useEffect(() => {
       const token = localStorage.getItem('token')
     if (!!token || (token === "undefined")){
+      // this.interval = setInterval(this.update, 1000);
       // getAll()
     }
   });
@@ -38,7 +39,7 @@ function App({loggedIn, logout, login, createUser, getAll, updateUser }) {
                 <Home/>
               </Route>
               <Route path="/genus">
-                  <GenusContainer/>
+                  <GenusContainer updateUser={updateUser}/>
               </Route>
               <Route path="/newuser">
                   <NewUserInput createUser = { createUser }/>
@@ -47,10 +48,10 @@ function App({loggedIn, logout, login, createUser, getAll, updateUser }) {
                   <UserLogin login = { login } />
               </Route>
               <Route path="/species">
-                <SpeciesContainer/>
+                <SpeciesContainer updateUser={updateUser} addSpeciesToUser={addSpeciesToUser}/>
               </Route >
               <PrivateRoute path="/user">
-                <Users updateUser={ updateUser } />
+                <Users updateUser={updateUser} />
               </PrivateRoute>
             </Switch>
           </body>
@@ -63,6 +64,7 @@ function App({loggedIn, logout, login, createUser, getAll, updateUser }) {
 
 const mapStateToProps = state => {
   return{
+    user: state.user,
     loggedIn: state.users.loggedIn
   }
 }
@@ -73,7 +75,9 @@ const mapDispatchToProps = dispatch => {
       createUser: user => dispatch(userActions.createUser(user)),
       getAll: () => dispatch(userActions.getAll()),
       logout: () => dispatch(userActions.logout()),
-      updateUser: user => dispatch(userActions.updateUser(user))
+      updateUser: user => dispatch(userActions.updateUser(user)),
+      addSpeciesToUser: species => dispatch(userActions.addSpeciesToUser(species))
+
   }
 } 
 

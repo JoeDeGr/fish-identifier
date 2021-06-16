@@ -9,7 +9,6 @@ function UserSpecies ({userSpecies}) {
             <Species
                 key = {species.id}
                 species = {species}
-                // addSpeciesToUser = {addSpeciesToUser}
                 // removeSpecies = {removeSpecies}
             />
         </div>

@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function Logout (props) {
+function Logout ({logout}) {
     return(
-        <button onClick={() => { props.logout() }}>Log The f*$% Out!</button>
+        <button onClick={() => { logout() }}>Log Out!</button>
     )
 }
+
+export default connect()(Logout)

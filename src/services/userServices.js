@@ -8,7 +8,9 @@ export const userService = {
     logout,
     getAll,
     storeToken,
-    storeUser
+    storeUser,
+    addSpeciesToUser,
+    addGenusToUser
 };
 
 function createUser(user) {
@@ -47,6 +49,41 @@ function updateUser(user) {
         })
 }
 
+
+function addSpeciesToUser(user){
+    debugger
+    const options = {
+        method: 'PATCH',
+        headers: {  'Content-Type': 'application/json',
+                    'Authorization' : authHeader()
+                 },
+        body: JSON.stringify({user})
+    };
+
+    return fetch(apiURL + '/users/' + user.id, options)
+        .then(resp => handleResponse(resp))
+        .then(data => {
+            return (storeUser(data))
+        })
+}
+
+function addGenusToUser(user){
+    debugger
+    const options = {
+        method: 'PATCH',
+        headers: {  'Content-Type': 'application/json',
+                    'Authorization' : authHeader()
+                 },
+        body: JSON.stringify({user})
+    };
+
+    return fetch(apiURL + '/users/' + user.id, options)
+        .then(resp => handleResponse(resp))
+        .then(data => {
+            return (storeUser(data))
+        })
+}
+
 function login (user) {
     const options = {
         method: 'POST',
@@ -57,10 +94,8 @@ function login (user) {
     return fetch(apiURL + '/login', options)
         .then(resp => handleResponse(resp))
         .then(data => {
-    
             storeToken(data)
-            return (storeUser(data))
-                
+            return (storeUser(data))  
         });
 }
 

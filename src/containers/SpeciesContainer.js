@@ -6,21 +6,29 @@ import { whatIsASpecies } from '../helpers/descriptions'
 
 class SpeciesContainer extends Component {
 
+    handleAddSpeciesToUser (species) {
+        debugger
+        this.props.addSpeciesToUser(species)
+        debugger
+    }
+
     componentDidMount(){
         this.props.loadSpecies()
     };
-
+    
     render () {
+        const{ specy} = this.props
         return (
             <div>
+
                 <sub className="sub-heading">
                     <h1>Species</h1>
                     <p>{whatIsASpecies}</p>
                 </sub>
                 <div className="species-list">
                     <SpeciesList
-                        specy={this.props.specy}
-                        addSpeciesToUser = { this.props.addSpeciesToUser }
+                        specy={specy}
+                        addSpeciesToUser = { this.handleAddSpeciesToUser }
                     />
                 </div>
             </div>
@@ -28,10 +36,14 @@ class SpeciesContainer extends Component {
     };
 }
 
-const mapStateToProps = state => ({ specy: state.species })
+const mapStateToProps = state => {
+    return {
+    user: state.users.user,
+    specy: state.species
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
-    addSpeciesToUser: species_id => dispatch({ type: 'ADD_SPECIES_TO_USER', species_id }),
     loadSpecies: () => dispatch(appActions.loadSpecies())
 })
 

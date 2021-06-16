@@ -2,7 +2,6 @@ let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
 
 export default function users ( state = initialState, action ) {
-    debugger
     switch(action.type) {
         case 'CREATE_USER_REQUEST':
             return {
@@ -54,11 +53,29 @@ export default function users ( state = initialState, action ) {
             }
         case 'GETALL_FAILURE':
             return{}
-        case 'ADD_SPECIES_TO_USER':
+        case 'ADD_SPECIES_TO_USER_REQUEST':
+            const species = state.user.user_species.concat(action.species)
+            debugger
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    user_species: species
+                }
+            }
+        case 'ADD_SPECIES_TO_USER_SUCCESS':
             console.log(action.species_id)
             return state
-        case 'ADD_GENUS_TO_USER':
+        case 'ADD_SPECIES_TO_USER_FAILURE':
+            return state
+        case 'ADD_GENUS_TO_USER_REQUEST':
             console.log(action.genus_id)
+            return state
+        case 'ADD_GENUS_TO_USER_SUCCESS':
+            console.log(action.genus_id)
+            return state
+        case 'ADD_GENUS_TO_USER_FAILURE':
+
             return state
         default:
             return state
