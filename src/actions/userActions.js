@@ -54,6 +54,7 @@ function getAll() {
 }
 
 function updateUser(user) {
+    debugger
     return dispatch => {
         dispatch({type: 'UPDATE_USER_REQUEST'});
         userService.updateUser(user)

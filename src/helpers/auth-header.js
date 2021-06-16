@@ -4,6 +4,6 @@ export function authHeader() {
     if (user && token) {
         return ('Bearer ' + token) ;
     } else {
-        return ('Bearer ' + 'Denied');
+        return ('Bearer Denied');
     }
 }

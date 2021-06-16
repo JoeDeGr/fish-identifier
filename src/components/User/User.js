@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 
-class User extends Component {
-    render(){
-        return(
-            <div>
-                <p>I exists.</p>
-            </div>
-        )
-    }
+function User () {
+    return(
+        <div>
+            <p>I exists. I will compile/show a list of current uploads/posts</p>
+        </div>
+    )
 }
 
 export default connect()(User)

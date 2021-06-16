@@ -7,7 +7,7 @@ class UserSpecies extends React.Component {
     render() {
  
         const { userSpecies } = this.props;
-        const speciesList = userSpecies.map( species => {
+        const speciesList = ( (!!userSpecies) ? userSpecies.map( species => {
             return(
             <li id={species.id}>
                 <Species
@@ -18,12 +18,11 @@ class UserSpecies extends React.Component {
                 />
             </li>
             )
-        });
+        }) : (<p>Add Some <a href="/species">Species!</a></p>));
         return(
             <div> 
                 <ul>
-                    {speciesList}
-                    {!!(speciesList === null ) ? speciesList : "Add Some Species to You Life!"}
+                    {speciesList} 
                 </ul>
             </div>
             

@@ -13,9 +13,11 @@ class UsersContainer extends Component {
     render() {
         return(
             <div>
-                <h1>You are here. We are now.</h1>
+                <h1>Welcome {this.props.user?.username}</h1>
+                <h3>You are here. We are now.</h3>
                 <Router history = { history }>
                     <UserNav />
+                    <div className='user-myStuff'>
                     <Switch>
                         <Route path='/users/genus'>
                             <UserGenus userGenus={this.props.user_genus}/>
@@ -32,8 +34,11 @@ class UsersContainer extends Component {
                             <p>So... You Wanna Change Your Info, huh?</p>
                         </Route>
                     </Switch>
+                    </div>
                 </Router>
-                <User user={this.props.user} />
+                <div className='user-homePage'>
+                    <User user={this.props.user} />
+                </div>
             </div>
         )
     }
@@ -43,8 +48,8 @@ const mapStateToProps = state => {
     const user = state.users.user
     return { 
         user: user,
-        userSpecies: user.user_species,
-        userGenus: user.user_genus
+        userSpecies: user?.user_species,
+        userGenus: user?.user_genus
     }
 }
 

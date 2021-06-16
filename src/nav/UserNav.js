@@ -7,7 +7,7 @@ const UserNav = () => {
             <NavLink to='/users/genus'>My Genus</NavLink>
             <NavLink to='/users/species'>My Species</NavLink>
             <NavLink to='/users/myphotos'>My Photos</NavLink>
-            <NavLink to='users/update'>Update My Info</NavLink>
+            <NavLink to='/users/update'>Update My Info</NavLink>
         </div>
     )
 }

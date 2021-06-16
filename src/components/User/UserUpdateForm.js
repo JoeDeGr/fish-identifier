@@ -20,6 +20,7 @@ class UserUpdateForm extends Component {
     }
 
     handleOnSubmit = event => {
+        debugger
         event.preventDefault()
         this.props.updateUser(this.state)
     }

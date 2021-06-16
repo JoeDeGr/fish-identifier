@@ -21,7 +21,7 @@ function App({loggedIn, logout, login, createUser, getAll, updateUser }) {
   useEffect(() => {
       const token = localStorage.getItem('token')
     if (!!token || (token === "undefined")){
-      getAll()
+      // getAll()
     }
   });
 

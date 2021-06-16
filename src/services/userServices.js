@@ -30,6 +30,7 @@ function createUser(user) {
 }
 
 function updateUser(user) {
+    debugger
     const options = {
         method: 'PATCH',
         headers: {  'Content-Type': 'application/json',

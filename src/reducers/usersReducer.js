@@ -16,12 +16,10 @@ export default function users ( state = initialState, action ) {
             }
         case 'CREATE_USER_FAILURE':
             return {}
+
         case 'UPDATE_USER_REQUEST':
-            console.log(state)
-            return {
-                loggingIn: true,
-                user: action.user
-            };
+            return {state}
+
         case 'UPDATE_USER_SUCCESS':
             return {
                 loggedIn: true,
@@ -29,6 +27,7 @@ export default function users ( state = initialState, action ) {
             }
         case 'UPDATE_USER_FAILURE':
             return {}
+
         case 'LOGIN_REQUEST':
             return {
                 loggingIn: true,
