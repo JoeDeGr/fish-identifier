@@ -3,27 +3,23 @@ import Species from '../Species/Species'
 import { connect } from 'react-redux'
 
 function UserSpecies ({userSpecies}) {
-
     const speciesList = ( (!!userSpecies) ? userSpecies.map( species => {
         return(
-        <li id={species.id}>
+        <div id={species.id}>
             <Species
                 key = {species.id}
                 species = {species}
                 // addSpeciesToUser = {addSpeciesToUser}
                 // removeSpecies = {removeSpecies}
             />
-        </li>
+        </div>
         )
     }) : (<p>Add Some <a href="/species">Species!</a></p>));
     return(
-        <div> 
-            <ul>
-                {speciesList} 
-            </ul>
-        </div>
-        
+        <ul>
+            {speciesList} 
+        </ul>
     )
 }
 
-export default  connect ()(UserSpecies)
+export default  connect()(UserSpecies)
