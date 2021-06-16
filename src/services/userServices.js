@@ -45,7 +45,6 @@ function update(user) {
 }
 
 function login (user) {
-    debugger
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -55,7 +54,7 @@ function login (user) {
     return fetch(apiURL + '/login', options)
         .then(resp => handleResponse(resp))
         .then(data => {
-            debugger
+    
             storeToken(data)
             return (storeUser(data))
                 

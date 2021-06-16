@@ -11,7 +11,6 @@ export const userActions = {
 };
 
 function login (user) {
-    debugger
     let username = user.username
     return dispatch => {
         dispatch({type: 'LOGIN_REQUEST', username});
