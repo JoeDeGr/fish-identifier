@@ -56,7 +56,7 @@ function getAll() {
 function updateUser(user) {
     return dispatch => {
         dispatch({type: 'UPDATE_USER_REQUEST'});
-        userService.update(user)
+        userService.updateUser(user)
             .then(
                 user => {
                     dispatch({ type: 'UPDATE_USER_SUCCESS', user});

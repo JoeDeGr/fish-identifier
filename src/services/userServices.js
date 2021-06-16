@@ -4,7 +4,7 @@ import { apiURL } from '../helpers/apiURL'
 export const userService = {
     createUser,
     login,
-    update,
+    updateUser,
     logout,
     getAll,
     storeToken,
@@ -29,10 +29,12 @@ function createUser(user) {
         });
 }
 
-function update(user) {
+function updateUser(user) {
     const options = {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {  'Content-Type': 'application/json',
+                    'Authorization' : authHeader()
+                 },
         body: JSON.stringify({user})
     };
 
@@ -40,7 +42,7 @@ function update(user) {
         .then(resp => handleResponse(resp))
         .then(data => {
             console.log(data)
-            return storeUser(data)
+            return (storeUser(data))
         })
 }
 
@@ -69,7 +71,7 @@ function logout() {
 function getAll() {
     const options = {
         method: 'GET',
-        headers: authHeader()
+        headers: {'Authorization' : authHeader()}
     }
     return fetch( apiURL + '/auto_login', options )
     .then(resp => handleResponse(resp))

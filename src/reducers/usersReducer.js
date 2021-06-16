@@ -43,6 +43,18 @@ export default function users ( state = initialState, action ) {
             return {};
         case 'LOGOUT':
             return {};
+        case 'GETALL_REQUEST':
+            return{
+                loggingIn: true,
+                user: user
+            }
+        case 'GETALL_SUCCESS':
+            return{
+                loggedIn: true,
+                user: action.user
+            }
+        case 'GETALL_FAILURE':
+            return{}
         case 'ADD_SPECIES_TO_USER':
             console.log(action.species_id)
             return state
