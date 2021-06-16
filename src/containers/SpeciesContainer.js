@@ -6,29 +6,21 @@ import { whatIsASpecies } from '../helpers/descriptions'
 
 class SpeciesContainer extends Component {
 
-    handleAddSpeciesToUser (species) {
-        debugger
-        this.props.addSpeciesToUser(species)
-        debugger
-    }
-
     componentDidMount(){
         this.props.loadSpecies()
     };
     
     render () {
-        const{ specy} = this.props
         return (
             <div>
-
                 <sub className="sub-heading">
                     <h1>Species</h1>
                     <p>{whatIsASpecies}</p>
                 </sub>
                 <div className="species-list">
                     <SpeciesList
-                        specy={specy}
-                        addSpeciesToUser = { this.handleAddSpeciesToUser }
+                        specy={this.props.specy}
+                        addSpeciesToUser = { this.props.addSpeciesToUser }
                     />
                 </div>
             </div>
@@ -38,7 +30,6 @@ class SpeciesContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-    user: state.users.user,
     specy: state.species
     }
 }

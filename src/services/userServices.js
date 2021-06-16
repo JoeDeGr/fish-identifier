@@ -32,7 +32,6 @@ function createUser(user) {
 }
 
 function updateUser(user) {
-    debugger
     const options = {
         method: 'PATCH',
         headers: {  'Content-Type': 'application/json',
@@ -50,34 +49,32 @@ function updateUser(user) {
 }
 
 
-function addSpeciesToUser(user){
-    debugger
+function addSpeciesToUser(species){
     const options = {
         method: 'PATCH',
         headers: {  'Content-Type': 'application/json',
                     'Authorization' : authHeader()
                  },
-        body: JSON.stringify({user})
+        body: JSON.stringify({species})
     };
 
-    return fetch(apiURL + '/users/' + user.id, options)
+    return fetch(apiURL + '/users/addSpecies', options)
         .then(resp => handleResponse(resp))
         .then(data => {
             return (storeUser(data))
         })
 }
 
-function addGenusToUser(user){
-    debugger
+function addGenusToUser(genus){
     const options = {
         method: 'PATCH',
         headers: {  'Content-Type': 'application/json',
                     'Authorization' : authHeader()
                  },
-        body: JSON.stringify({user})
+        body: JSON.stringify({genus})
     };
 
-    return fetch(apiURL + '/users/' + user.id, options)
+    return fetch(apiURL + '/users/addGenus', options)
         .then(resp => handleResponse(resp))
         .then(data => {
             return (storeUser(data))

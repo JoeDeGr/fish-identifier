@@ -1,6 +1,7 @@
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
-
+// const userState = action.user || initialState
+//do something like this so I'm not forever resetting my state.
 export default function users ( state = initialState, action ) {
     switch(action.type) {
         case 'CREATE_USER_REQUEST':
@@ -25,7 +26,7 @@ export default function users ( state = initialState, action ) {
                 user: action.user
             }
         case 'UPDATE_USER_FAILURE':
-            return {}
+            return state
 
         case 'LOGIN_REQUEST':
             return {
@@ -39,8 +40,10 @@ export default function users ( state = initialState, action ) {
             };
         case 'LOGIN_FAILURE':
             return {};
+
         case 'LOGOUT':
             return {};
+
         case 'GETALL_REQUEST':
             return{
                 loggingIn: true,
@@ -55,7 +58,6 @@ export default function users ( state = initialState, action ) {
             return{}
         case 'ADD_SPECIES_TO_USER_REQUEST':
             const species = state.user.user_species.concat(action.species)
-            debugger
             return {
                 ...state,
                 user: {
@@ -64,19 +66,32 @@ export default function users ( state = initialState, action ) {
                 }
             }
         case 'ADD_SPECIES_TO_USER_SUCCESS':
-            console.log(action.species_id)
-            return state
+           
+            return {
+                loggedIn: true,
+                user: action.user
+            }
         case 'ADD_SPECIES_TO_USER_FAILURE':
             return state
         case 'ADD_GENUS_TO_USER_REQUEST':
-            console.log(action.genus_id)
-            return state
+            const genus = state.user.user_genus.concat(action.genus)
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    user_genus: genus
+                }
+            }
         case 'ADD_GENUS_TO_USER_SUCCESS':
-            console.log(action.genus_id)
-            return state
+
+            return {
+                loggedIn: true,
+                user: action.user
+            }
         case 'ADD_GENUS_TO_USER_FAILURE':
 
             return state
+
         default:
             return state
     }

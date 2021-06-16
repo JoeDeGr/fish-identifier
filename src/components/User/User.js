@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 function User () {
     return(
         <div>
-            <p>I exists. I will compile/show a list of current uploads/posts</p>
+            <h3>I exists.</h3>
+            <p> Eventually I will compile/show a list of current uploads/posts</p>
         </div>
     )
 }

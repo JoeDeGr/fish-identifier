@@ -10,7 +10,6 @@ function UserGenus ({userGenus}){
             <Genus
                 key = {genus.id}
                 genus = {genus}
-                // addGenusToUser = {addGenusToUser}
                 // removeGenus = {removeGenus}
             />
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import carpface from './images/carpface.JPG';
 import './App.css';
 import NavBarContainer from './containers/NavBarContainer';
@@ -16,7 +16,8 @@ import UserLogin from './components/User/UserLogin';
 // import Modal from './comoponents/Modal';
 
 
-function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser }) {
+function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser, addGenusToUser }) {
+  
 
   useEffect(() => {
       const token = localStorage.getItem('token')
@@ -39,7 +40,7 @@ function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpecie
                 <Home/>
               </Route>
               <Route path="/genus">
-                  <GenusContainer updateUser={updateUser}/>
+                  <GenusContainer addGenusToUser={ addGenusToUser } />
               </Route>
               <Route path="/newuser">
                   <NewUserInput createUser = { createUser }/>
@@ -48,7 +49,7 @@ function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpecie
                   <UserLogin login = { login } />
               </Route>
               <Route path="/species">
-                <SpeciesContainer updateUser={updateUser} addSpeciesToUser={addSpeciesToUser}/>
+                <SpeciesContainer addSpeciesToUser={ addSpeciesToUser }/>
               </Route >
               <PrivateRoute path="/user">
                 <Users updateUser={updateUser} />
@@ -76,8 +77,8 @@ const mapDispatchToProps = dispatch => {
       getAll: () => dispatch(userActions.getAll()),
       logout: () => dispatch(userActions.logout()),
       updateUser: user => dispatch(userActions.updateUser(user)),
-      addSpeciesToUser: species => dispatch(userActions.addSpeciesToUser(species))
-
+      addSpeciesToUser: species  => dispatch(userActions.addSpeciesToUser(species)),
+      addGenusToUser: genus => dispatch(userActions.addGenusToUser(genus))
   }
 } 
 

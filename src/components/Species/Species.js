@@ -1,8 +1,6 @@
 import React from 'react';
 
 const Species = ({ species, addSpeciesToUser }) => {
-        // const { species, addSpeciesToUser } = props
-
         return(
             <div className="species-show">
                 <h3>{species.common_name}</h3>
