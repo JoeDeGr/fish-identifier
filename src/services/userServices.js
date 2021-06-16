@@ -55,8 +55,10 @@ function login (user) {
     return fetch(apiURL + '/login', options)
         .then(resp => handleResponse(resp))
         .then(data => {
+            debugger
             storeToken(data)
-            return storeUser(data)
+            return (storeUser(data))
+                
         });
 }
 

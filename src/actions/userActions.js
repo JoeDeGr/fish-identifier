@@ -45,9 +45,9 @@ function getAll() {
         dispatch({ type: 'GETALL_REQUEST'});
         userService.getAll()
             .then(
-                user => dispatch({ type: 'LOGIN_SUCCESS', user}),
+                user => dispatch({ type: 'GETALL_SUCCESS', user}),
                 error => {
-                    dispatch({ type: 'LOGIN_FAILURE', error});
+                    dispatch({ type: 'GETALL_FAILURE', error});
                     dispatch( alertActions.error(error));
                 }
             );
