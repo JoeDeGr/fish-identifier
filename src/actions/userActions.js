@@ -41,9 +41,10 @@ function logout() {
     }
 }
 
-function getAll() {
+function getAll(user) {
+    debugger
     return dispatch => {
-        dispatch({ type: 'GETALL_REQUEST'});
+        dispatch({ type: 'GETALL_REQUEST', user});
         userService.getAll()
             .then(
                 user => dispatch({ type: 'GETALL_SUCCESS', user}),
@@ -57,12 +58,12 @@ function getAll() {
 
 function updateUser(user) {
     return dispatch => {
-        dispatch({type: 'UPDATE_USER_REQUEST'});
+        dispatch({type: 'UPDATE_USER_REQUEST', user});
         userService.updateUser(user)
             .then(
                 user => {
                     dispatch({ type: 'UPDATE_USER_SUCCESS', user});
-                    history.push('/');
+                    history.push('/user');
                 },
                 error => {
                     dispatch({ type: 'UPDATE_USER_FAILURE', error});
@@ -80,7 +81,7 @@ function createUser (user) {
             .then(
                 user => {
                     dispatch({type: 'CREATE_USER_SUCCESS', user});
-                    history.push('/');
+                    history.push('/home');
                 },
                 error => {
                     dispatch({type: 'CREATE_USER_FAILURE', error});

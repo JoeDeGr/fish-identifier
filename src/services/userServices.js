@@ -27,10 +27,7 @@ function createUser(user) {
 
     return fetch(apiURL + '/users', options)
         .then(resp => handleResponse(resp))
-        .then(data => {
-            storeToken(data)
-            return storeUser(data)
-        });
+        .then(data => setUser(data));
 }
 
 function updateUser(user) {
@@ -163,4 +160,9 @@ function storeUser(data) {
 
 function storeToken(data) {
     localStorage.setItem('token', JSON.stringify(data.user.jwt));
+}
+
+function setUser(data){
+    storeToken(data);
+    return storeUser(data)
 }

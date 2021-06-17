@@ -1,6 +1,6 @@
 let user = JSON.parse(localStorage.getItem('user'));
 let token = JSON.parse(localStorage.getItem('token'));
-const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
+const initialState = token ? { loggedIn: true, user } : { loggedIn: false };
 // const userState = action.user || initialState
 //do something like this so I'm not forever resetting my state.
 export default function users ( state = initialState, action ) {
@@ -19,7 +19,10 @@ export default function users ( state = initialState, action ) {
             return {}
 
         case 'UPDATE_USER_REQUEST':
-            return {state}
+            return{
+                loading: true,
+                user: action.user
+            }
 
         case 'UPDATE_USER_SUCCESS':
             return {
@@ -48,7 +51,7 @@ export default function users ( state = initialState, action ) {
         case 'GETALL_REQUEST':
             return{
                 loggingIn: true,
-                user: user
+                user: action.user
             }
         case 'GETALL_SUCCESS':
             return{

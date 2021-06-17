@@ -9,54 +9,50 @@ import { history } from '../helpers/history';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class UsersContainer extends Component {
-
-    componentDidUpdate(prevProps){
-        if (this.props.user !== prevProps.user) {
-            console.log(this.props.user)
-        }
-    }
     
     render() {
+        debugger
+        const {user, removeGenus, removeSpecies, updateUser } = this.props
         return(
             <div>
-                <h1>Welcome {this.props.user?.username}</h1>
+                <h1>Welcome {user?.username}</h1>
                 <h3>You are here. We are now.</h3>
                 <Router history = { history }>
                     <UserNav />
                     <div className='user-myStuff'>
                     <Switch>
                         <Route path='/users/genus'>
-                            <UserGenus userGenus={this.props.userGenus} removeGenus={this.props.removeGenus}/>
+                            <UserGenus userGenus={user?.user_genus} removeGenus={removeGenus}/>
                             <p>Hi</p>
                         </Route>
                         <Route path ='/users/species'>
-                            <UserSpecies userSpecies={this.props.userSpecies} removeSpecies={this.props.removeSpecies}/>
+                            <UserSpecies userSpecies={user?.user_species} removeSpecies={removeSpecies}/>
                         </Route>
                         <Route path='/users/myphotos'>
                             {/* <UserPhotos/> */}
                             <p>Coming Soon! Your Photos!</p>
                         </Route>
                         <Route path='/users/update'>
-                            <UserUpdateForm user={this.props.user} updateUser={this.props.updateUser}/>
+                            <UserUpdateForm user={user} updateUser={updateUser}/>
                             <p>So... You Wanna Change Your Info, huh?</p>
                         </Route>
                     </Switch>
                     </div>
                 </Router>
                 <div className='user-homePage'>
-                    <User user={this.props.user} />
+                    <User user={user} />
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return { 
-        user: state.users.user,
-        userSpecies: state.users.user.user_species,
-        userGenus: state.users.user.user_genus
-    }
-}
+// const mapStateToProps = state => {
+//     return { 
+        // user: state.users.user,
+        // userSpecies: state.users.user.user_species,
+        // userGenus: state.users.user.user_genus
+//     }
+// }
 
-export default connect(mapStateToProps)(UsersContainer)
+export default connect()(UsersContainer)

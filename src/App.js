@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import carpface from './images/carpface.JPG';
 import './App.css';
 import NavBarContainer from './containers/NavBarContainer';
@@ -19,13 +19,15 @@ import UserLogin from './components/User/UserLogin';
 function App({user, loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser, addGenusToUser, removeSpecies, removeGenus }) {
   
 
-  useEffect((user) => {
-      const token = localStorage.getItem('token')
-    if (!!token || (token === "undefined")){
-      // this.interval = setInterval(this.update, 1000);
-      getAll(user)
-    }
-  }, [user]);
+  // useEffect((user) => {
+  //   const thisUser = (!!user) ? user : localStorage.getItem('user')
+  //   debugger
+  //   const token = localStorage.getItem('token')
+
+  //   if (!!token || (token === "undefined")){
+  //     getAll(thisUser)
+  //   }
+  // }, [user]);
 
   return (
     <div className="app">
@@ -52,7 +54,7 @@ function App({user, loggedIn, logout, login, createUser, getAll, updateUser, add
                 <SpeciesContainer addSpeciesToUser={ addSpeciesToUser }/>
               </Route >
               <PrivateRoute path="/user">
-                <Users updateUser={updateUser} removeSpecies={removeSpecies}  removeGenus={removeGenus}/>
+                <Users updateUser={updateUser} removeSpecies={removeSpecies}  removeGenus={removeGenus} user={user} />
               </PrivateRoute>
             </Switch>
           </body>
@@ -65,7 +67,7 @@ function App({user, loggedIn, logout, login, createUser, getAll, updateUser, add
 
 const mapStateToProps = state => {
   return{
-    user: state.user,
+    user: state.users.user,
     loggedIn: state.users.loggedIn
   }
 }
