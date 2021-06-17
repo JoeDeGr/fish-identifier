@@ -22,7 +22,7 @@ function login (user) {
             .then(
                 user => {
                     dispatch({type: 'LOGIN_SUCCESS', user});
-                    history.push('/user');
+                    history.push('/home');
                 },
                 error => {
                     dispatch({type: 'LOGIN_FAILURE', error});
@@ -33,17 +33,15 @@ function login (user) {
 }
 
 function logout() {
-    
     return dispatch => {
         dispatch({type: 'LOGOUT'});
-        history.push('/');
+        history.push('/home');
         userService.logout();
         
     }
 }
 
 function getAll() {
-
     return dispatch => {
         dispatch({ type: 'GETALL_REQUEST'});
         userService.getAll()
@@ -76,7 +74,6 @@ function updateUser(user) {
 
 function createUser (user) {
     let username = user.username
-
     return dispatch => {
         dispatch({type: 'CREATE_USER_REQUEST', username});
         userService.createUser(user)
@@ -94,14 +91,12 @@ function createUser (user) {
 }
 
 function addSpeciesToUser( species ){
-
     return dispatch => {
         dispatch({type: 'ADD_SPECIES_TO_USER_REQUEST', species })
         userService.addSpeciesToUser(species)
         .then(
             user => {
                 dispatch({type: 'ADD_SPECIES_TO_USER_SUCCESS', user});
-                history.push('/species');
             },
             error => {
                 dispatch({type: 'ADD_SPECIES_TO_USER_FAILURE', error});
@@ -118,7 +113,6 @@ function addGenusToUser( genus ){
         .then(
             user => {
                 dispatch({type: 'ADD_GENUS_TO_USER_SUCCESS', user});
-                history.push('/genus');
             },
             error => {
                 dispatch({type: 'ADD_GENUS_TO_USER_FAILURE', error});
@@ -131,15 +125,14 @@ function addGenusToUser( genus ){
 
 function removeSpecies(species){
     return dispatch => {
-        dispatch({type: 'REMOVE_SPECIES_FROM_USER_REQUEST', species })
+        dispatch({type: 'REMOVE_SPECIES_REQUEST', species })
         userService.removeSpecies(species)
         .then(
             user => {
-                dispatch({type: 'REMOVE_SPECIES_FROM_USER_SUCCESS', user});
-                history.push('users/species');
+                dispatch({type: 'REMOVE_SPECIES_SUCCESS', user});
             },
             error => {
-                dispatch({type: 'REMOVE_SPECIES_FROM_USER_FAILURE', error});
+                dispatch({type: 'REMOVE_SPECIES_FAILURE', error});
                 dispatch(alertActions.error(error));
             }
         )
@@ -153,7 +146,6 @@ function removeGenus(genus){
         .then(
             user => {
                 dispatch({type: 'REMOVE_GENUS_SUCCESS', user});
-                history.push('users/genus');
             },
             error => {
                 dispatch({type: 'REMOVE_GENUS_FAILURE', error});

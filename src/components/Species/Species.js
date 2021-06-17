@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Species = ({ species, addSpeciesToUser }) => {
+const Species = ({ species, addSpeciesToUser, removeSpecies }) => {
         return(
             <div className="species-show">
                 <h3>{species.common_name}</h3>
@@ -13,6 +13,7 @@ const Species = ({ species, addSpeciesToUser }) => {
                     <li>Game Qualities: {species.game_qualities}</li>
                     <li>Description: {species.description}</li>
                     {((!!addSpeciesToUser) ? <button onClick={() => addSpeciesToUser(species)}>Add Me To Your List!</button> : <></> )}
+                    {(!!removeSpecies) ? (<button onClick={() => removeSpecies(species)}>Remove Me From Your List!</button>) : <></>}
                 </ul>
             </div>
         )

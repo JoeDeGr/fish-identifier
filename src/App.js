@@ -16,16 +16,16 @@ import UserLogin from './components/User/UserLogin';
 // import Modal from './comoponents/Modal';
 
 
-function App({loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser, addGenusToUser, removeSpecies, removeGenus }) {
+function App({user, loggedIn, logout, login, createUser, getAll, updateUser, addSpeciesToUser, addGenusToUser, removeSpecies, removeGenus }) {
   
 
-  useEffect(() => {
+  useEffect((user) => {
       const token = localStorage.getItem('token')
     if (!!token || (token === "undefined")){
       // this.interval = setInterval(this.update, 1000);
-      // getAll()
+      getAll(user)
     }
-  });
+  }, [user]);
 
   return (
     <div className="app">

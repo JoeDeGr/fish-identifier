@@ -92,9 +92,7 @@ function removeSpecies(species){
 
     return fetch(apiURL + '/users/removeSpecies', options)
         .then(resp => handleResponse(resp))
-        .then(data => {
-            return (storeUser(data))
-        })
+        .then(data => storeUser(data))
 }
 
 function removeGenus(genus){
@@ -144,7 +142,6 @@ function getAll() {
 }
 
 function handleResponse(response) {
-    
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {

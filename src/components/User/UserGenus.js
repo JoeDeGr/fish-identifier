@@ -2,9 +2,8 @@ import React from 'react';
 import Genus from '../Genus/Genus'
 import { connect } from 'react-redux'
 
-function UserGenus ({userGenus, removeGenus}){
-
-    const genusList =  ((!!userGenus) ? userGenus.map( genus => {
+function UserGenus ({ userGenus, removeGenus }){
+    const genusList = ( (!!userGenus && userGenus != "") ? userGenus.map( genus => {
         return( 
         <div id={genus.id}>
             <Genus
@@ -22,4 +21,4 @@ function UserGenus ({userGenus, removeGenus}){
     )
 }
 
-export default  connect ()(UserGenus)
+export default  connect()(UserGenus)

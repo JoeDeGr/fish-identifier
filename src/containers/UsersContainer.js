@@ -9,6 +9,12 @@ import { history } from '../helpers/history';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class UsersContainer extends Component {
+
+    componentDidUpdate(prevProps){
+        if (this.props.user !== prevProps.user) {
+            console.log(this.props.user)
+        }
+    }
     
     render() {
         return(
@@ -21,6 +27,7 @@ class UsersContainer extends Component {
                     <Switch>
                         <Route path='/users/genus'>
                             <UserGenus userGenus={this.props.userGenus} removeGenus={this.props.removeGenus}/>
+                            <p>Hi</p>
                         </Route>
                         <Route path ='/users/species'>
                             <UserSpecies userSpecies={this.props.userSpecies} removeSpecies={this.props.removeSpecies}/>
@@ -45,11 +52,10 @@ class UsersContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    const user = state.users.user
     return { 
-        user: user,
-        userSpecies: user?.user_species,
-        userGenus: user?.user_genus
+        user: state.users.user,
+        userSpecies: state.users.user.user_species,
+        userGenus: state.users.user.user_genus
     }
 }
 

@@ -1,4 +1,5 @@
 let user = JSON.parse(localStorage.getItem('user'));
+let token = JSON.parse(localStorage.getItem('token'));
 const initialState = user ? { loggedIn: true, user } : { loggedIn: false };
 // const userState = action.user || initialState
 //do something like this so I'm not forever resetting my state.
@@ -73,6 +74,7 @@ export default function users ( state = initialState, action ) {
             }
         case 'ADD_SPECIES_TO_USER_FAILURE':
             return state
+
         case 'ADD_GENUS_TO_USER_REQUEST':
             const genus = state.user.user_genus.concat(action.genus)
             return {
@@ -90,6 +92,32 @@ export default function users ( state = initialState, action ) {
             }
         case 'ADD_GENUS_TO_USER_FAILURE':
 
+            return state
+        case 'REMOVE_SPECIES_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'REMOVE_SPECIES_SUCCESS':
+            return {
+                loggedIn: true,
+                user: action.user
+            }
+        case 'REMOVE_SPECIES_FAILURE':
+            return { state }
+
+        case 'REMOVE_GENUS_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'REMOVE_GENUS_SUCCESS':
+
+            return {
+                loggedIn: true,
+                user: action.user
+            }
+        case 'REMOVE_GENUS_FAILURE':
             return state
 
         default:
