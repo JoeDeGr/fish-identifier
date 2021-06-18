@@ -1,3 +1,10 @@
+**_____NOTICE_____**
+THE BACK END IS LOCATED HERE IN A SEPERATE REPO:
+
+[https://github.com/JoeDeGr/FishIdentifierApi.git]
+
+Please clone and dowload to use. this React frontend (or use your own if you please... happy coding.)
+
 # Getting Started with Create React App
 
 apiURL is in '../helpers/apiURL'
