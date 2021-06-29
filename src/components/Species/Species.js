@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Species = ({ species, addSpeciesToUser, removeSpecies }) => {
-        return(
+const Species = ({ species, addSpeciesToUser, removeSpecies, count }) => {
+    
+    const [ likes, setLikes ] = useState(0)
+
+    const newCount = parseInt(likes) + parseInt(count) 
+
+    return(
             <div className="species-show">
                 <h3>{species.common_name}</h3>
                 <ul>
@@ -14,6 +19,16 @@ const Species = ({ species, addSpeciesToUser, removeSpecies }) => {
                     <li>Description: {species.description}</li>
                     {((!!addSpeciesToUser) ? <button onClick={() => addSpeciesToUser(species)}>Add Me To Your List!</button> : <></> )}
                     {(!!removeSpecies) ? (<button onClick={() => removeSpecies(species)}>Remove Me From Your List!</button>) : <></>}
+                    <li>
+                        <label><strong>likes: { likes }</strong></label>
+                        
+                        {(!!count) ? (
+                            <button onClick={() => setLikes( newCount ) }>click me! </button>
+                        ) : (
+                            <button onClick={() => setLikes( likes + 1)}>Like Me! </button> 
+                        )}
+                    </li> 
+                    
                 </ul>
             </div>
         )

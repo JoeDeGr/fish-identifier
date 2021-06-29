@@ -11,7 +11,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 class UsersContainer extends Component {
     
     render() {
-        debugger
         const {user, removeGenus, removeSpecies, updateUser } = this.props
         return(
             <div>

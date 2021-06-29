@@ -24,11 +24,14 @@ function loadGenera(){
 };
 
 function loadSpecies(){
+    console.log("c")
     return dispatch => {
         dispatch({type: 'LOAD_SPECIES_REQUEST'});
+        console.log("d")
         appServices.loadSpecies()
         .then(
             species => {
+                console.log("e")
                 dispatch({type: 'LOAD_SPECIES_SUCCESS', species});
             },
             error => {

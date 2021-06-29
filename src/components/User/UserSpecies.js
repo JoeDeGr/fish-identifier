@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 function UserSpecies ({userSpecies, removeSpecies}) {
     const speciesList = ( (!!userSpecies && userSpecies != "") ? userSpecies.map( species => {
-        debugger
         return(
         <div id={species.id}>
             <Species

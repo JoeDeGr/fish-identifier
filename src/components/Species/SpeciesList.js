@@ -4,13 +4,14 @@ import Species from './Species'
 class SpeciesList extends React.Component {
 
     render() {
-        const { specy, addSpeciesToUser } = this.props;
+        const { specy, addSpeciesToUser, count} = this.props;
         const speciesList = ( (specy?.species) ? specy.species.map( species => {
             return(
                 <Species
-                    key = {species.id}
-                    species = {species}
+                    key = { species.id }
+                    species = { species }
                     addSpeciesToUser = { addSpeciesToUser }
+                    count = { count }
                 />
             ) 
         }) : ( <p>Loading</p> ));
